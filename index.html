@@ -1,1581 +1,326 @@
-ChatGPT Plus
-
-
-
-
-
-Khaled Alnemer Resume.pdf
-PDF
-بحكم خبرتك فيني وبالاعتماد على السيرة المرفقة احتاج برومت لتصميم سيرة ذاتية احترافية 
-
-
-Resume.html
-File
-طيب انا حجزت دومين وحاب ارفع هذي الصفحة على digitalocean احتاج تكون معي خطوة بخطوة وتعطيني الخطوات وحدة وحدة 
-
-Uploaded image
-
-Uploaded image
-تم
-
-ممتاز. الآن ندخل على أهم خطوة: ربط الدومين الحقيقي.
-
-الخطوة 4 — ربط الدومين مع DigitalOcean
-سنربط:
-
-khaledalnemer.sa
-بالموقع المنشور.
-
-4.1 افتح إعدادات التطبيق
-داخل DigitalOcean:
-
-ادخل على التطبيق الذي أنشأته.
-
-ثم من القائمة الجانبية:
-
-Settings
-ثم:
-
-Domains
-4.2 إضافة الدومين
-اضغط:
-
-Add Domain
-4.3 أضف الدومين
-أدخل:
-
-khaledalnemer.sa
-ثم اضغط:
-
-Add
-4.4 سيعطيك DNS Records
-سيظهر لك غالبًا:
-
-CNAME أو A Record
-مثل:
-
-@
-و
-
-www
-مع قيم مرتبطة بـ DigitalOcean.
-
-مهم جدًا الآن
-نحتاج الذهاب لمكان إدارة الدومين.
-
-غالبًا:
-
-SaudiNIC
-
-أو مزود الدومين الذي اشتريت منه
-
-4.5 افتح DNS Management للدومين
-ابحث عن:
-
-DNS Management
-أو:
-
-Manage DNS
-4.6 أضف Records المطلوبة
-عادة تضيف:
-
-A Record
-Host: @
-Value: [DigitalOcean IP]
-CNAME
-Host: www
-Value: cname.ondigitalocean.app
-لكن لا تعتمد على القيم هنا.
-استخدم القيم التي أعطاها لك DigitalOcean بالضبط.
-
-بعد الإضافة
-انتظر:
-
-5 دقائق إلى ساعة غالبًا
-
-أحيانًا حتى 24 ساعة
-
-ثم DigitalOcean سيقوم تلقائيًا بـ:
-
-SSL Certificate
-
-HTTPS
-
-حماية الاتصال
-
-المطلوب منك الآن
-أرسل لي صورة من:
-
-صفحة Domains داخل DigitalOcean
-
-أو
-
-الـ DNS Records التي طلبها منك
-
-حتى أعطيك القيم الصحيحة خطوة بخطوة بدون خطأ.
-
-
-جميل احتاج الى تحديث على الصفحة ويكون فيه تحكم اذا كان المتصفح جوال او لابتوب 
-
-Thought for 4s
-نعم. صفحتك فيها أساس جيد للـ responsive لأن فيها viewport و CSS media queries، لكن نضيف تحكم أوضح حسب نوع الجهاز: Mobile / Tablet / Desktop مع تعديل تلقائي للعرض. 
-
-
-الخطوة 5 — إضافة Device Controller
-افتح ملف:
-
-index.html
-ثم ابحث عن هذا السطر داخل <body>:
-
-<header class="chrome no-print">
-وقبله مباشرة أضف:
-
-<script>
-  function detectDevice() {
-    const width = window.innerWidth;
-    const root = document.documentElement;
-
-    root.classList.remove("device-mobile", "device-tablet", "device-desktop");
-
-    if (width <= 640) {
-      root.classList.add("device-mobile");
-    } else if (width <= 1024) {
-      root.classList.add("device-tablet");
-    } else {
-      root.classList.add("device-desktop");
-    }
-  }
-
-  window.addEventListener("load", detectDevice);
-  window.addEventListener("resize", detectDevice);
-</script>
-الخطوة 6 — إضافة CSS للتحكم بالجوال واللابتوب
-ابحث عن نهاية وسم <style> قبل:
-
-</style>
-وأضف قبله مباشرة:
-
-/* Device-aware layout control */
-
-.device-mobile body {
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-.device-mobile .page-wrap {
-  padding: 0;
-}
-
-.device-mobile .sheet {
-  border-radius: 0;
-  border-left: none;
-  border-right: none;
-}
-
-.device-mobile .hero {
-  padding: 28px 20px 22px;
-}
-
-.device-mobile .hero-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 22px;
-}
-
-.device-mobile .name {
-  font-size: 38px;
-}
-
-.device-mobile .summary {
-  font-size: 13.5px;
-}
-
-.device-mobile .meta {
-  grid-template-columns: 1fr;
-}
-
-.device-mobile .meta-cell {
-  border-right: none;
-  border-bottom: 1px solid var(--border);
-  padding-left: 0;
-}
-
-.device-mobile .body {
-  padding: 24px 20px 36px;
-}
-
-.device-mobile .role-head {
-  grid-template-columns: 1fr;
-  gap: 8px;
-}
-
-.device-mobile .role-body.split {
-  grid-template-columns: 1fr;
-}
-
-.device-mobile .role-side {
-  border-left: none;
-  border-top: 1px solid var(--border);
-  padding-left: 0;
-  padding-top: 14px;
-}
-
-.device-mobile .skills-grid,
-.device-mobile .inits,
-.device-mobile .twocol {
-  grid-template-columns: 1fr;
-}
-
-.device-mobile .footer {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 20px;
-}
-
-.device-tablet .hero-grid {
-  grid-template-columns: 1fr;
-  gap: 28px;
-}
-
-.device-tablet .skills-grid {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.device-tablet .inits,
-.device-tablet .twocol {
-  grid-template-columns: 1fr;
-}
-
-.device-desktop .page-wrap {
-  max-width: 1180px;
-}
-الخطوة 7 — حفظ التعديل في GitHub
-بعد الإضافة:
-
-اضغط Commit changes
-
-انتظر DigitalOcean يعمل Deploy تلقائي
-
-افتح الموقع من الجوال واللابتوب
-
-النتيجة:
-
-الجوال: صفحة طولية مريحة
-
-اللابتوب: Layout عريض واحترافي
-
-التابلت: وسط بين الاثنين
-
-بعد ما تطبقها، أرسل صورة من الجوال أو اللابتوب إذا ظهر أي خلل.
-
-
-
-Pasted code.html
-File
-هذا الملف كامل عدل عليه واعطني 
-
-Thought for 27s
-تم تعديل الملف كاملًا وإضافة:
-
-تحكم تلقائي حسب الجهاز: Mobile / Tablet / Desktop
-
-تحسين عرض الجوال بشكل مستقل
-
-تحسين التابلت واللابتوب
-
-إصلاح عرض الإيميل بدل [email protected]
-
-إزالة كود Cloudflare غير المناسب للـ Static Site
-
-الحفاظ على تصميم shadcn والـ A4 Print
-
-الملف الجاهز للرفع على GitHub:
-
-تحميل index-responsive.html
-
-ارفعه على GitHub وغيّر اسمه إلى:
-
-index.html
+```html
 <!doctype html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Khaled Alnemer — National Data &amp; Analytics Leader</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<style>
-  :root {
-    --bg:           #ffffff;
-    --bg-subtle:    #fafafa;
-    --bg-muted:     #f4f4f5;
-    --bg-card:      #ffffff;
-    --fg:           #09090b;
-    --fg-muted:     #52525b;
-    --fg-subtle:    #71717a;
-    --fg-faint:     #a1a1aa;
-    --border:       #e4e4e7;
-    --border-strong:#d4d4d8;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    --accent:       #047857;
-    --accent-2:     #059669;
-    --accent-soft:  #ecfdf5;
-    --accent-line:  #a7f3d0;
+  <title>Khaled Alnemer — National Data & Analytics Leader</title>
 
-    --radius:       10px;
-    --radius-lg:    14px;
-    --radius-xl:    18px;
+  <meta
+    name="description"
+    content="Khaled Alnemer — National Data & Analytics Leader specialized in Business Intelligence, Data Governance, Statistical Platforms, and Executive Decision Intelligence."
+  />
 
-    --shadow-sm:    0 1px 2px 0 rgb(0 0 0 / 0.04);
+  <meta name="theme-color" content="#047857" />
 
-    --font-sans:    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
-    --font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  }
-  [data-theme="dark"] {
-    --bg:           #09090b;
-    --bg-subtle:    #0c0c0f;
-    --bg-muted:     #18181b;
-    --bg-card:      #0c0c0f;
-    --fg:           #fafafa;
-    --fg-muted:     #a1a1aa;
-    --fg-subtle:    #71717a;
-    --fg-faint:     #52525b;
-    --border:       #27272a;
-    --border-strong:#3f3f46;
-    --accent:       #34d399;
-    --accent-2:     #10b981;
-    --accent-soft:  rgba(16, 185, 129, 0.10);
-    --accent-line:  rgba(16, 185, 129, 0.35);
-    --shadow-sm:    0 1px 2px 0 rgb(0 0 0 / 0.4);
-  }
+  <meta property="og:title" content="Khaled Alnemer" />
+  <meta property="og:description"
+    content="National Data & Analytics Leader specialized in Data Governance, Business Intelligence, and Executive Decision Intelligence." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://khaledalnemer.sa" />
 
-  *, *::before, *::after { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    font-family: var(--font-sans);
-    font-feature-settings: 'cv02','cv03','cv04','cv11', 'ss01';
-    color: var(--fg);
-    background: var(--bg-subtle);
-    font-size: 14px;
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    letter-spacing: -0.005em;
-  }
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  /* Top chrome */
-  .chrome {
-    position: sticky; top: 0; z-index: 30;
-    background: color-mix(in srgb, var(--bg) 80%, transparent);
-    backdrop-filter: saturate(140%) blur(10px);
-    -webkit-backdrop-filter: saturate(140%) blur(10px);
-    border-bottom: 1px solid var(--border);
-  }
-  .chrome-inner {
-    max-width: 1180px; margin: 0 auto;
-    padding: 12px 28px;
-    display: flex; align-items: center; gap: 16px;
-  }
-  .brand {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-weight: 600; font-size: 13px; letter-spacing: -0.01em;
-  }
-  .brand-mark {
-    width: 22px; height: 22px; border-radius: 6px;
-    background: var(--fg); color: var(--bg);
-    display: grid; place-items: center;
-    font-weight: 700; font-size: 12px;
-    font-family: var(--font-mono);
-  }
-  .brand-slash { color: var(--fg-faint); font-weight: 300; }
-  .brand-sub { color: var(--fg-muted); font-weight: 500; }
-  .crumb {
-    color: var(--fg-muted); font-size: 12.5px;
-    display: inline-flex; align-items: center; gap: 8px;
-  }
-  .crumb-dot { width: 4px; height: 4px; border-radius: 99px; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
-  .chrome-actions { margin-left: auto; display: inline-flex; gap: 6px; align-items: center; }
-  .btn {
-    appearance: none; background: var(--bg-card); color: var(--fg);
-    border: 1px solid var(--border);
-    border-radius: 8px; padding: 6px 10px;
-    font: 500 12.5px var(--font-sans);
-    cursor: pointer; transition: all .15s ease;
-    display: inline-flex; align-items: center; gap: 6px;
-  }
-  .btn:hover { border-color: var(--border-strong); background: var(--bg-muted); }
-  .btn.primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
-  .btn.primary:hover { background: var(--fg-muted); }
-  .btn svg { width: 13px; height: 13px; }
-  .kbd {
-    font-family: var(--font-mono); font-size: 10.5px;
-    padding: 2px 5px; border-radius: 4px;
-    border: 1px solid var(--border); background: var(--bg-muted); color: var(--fg-muted);
-  }
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet" />
 
-  /* Page */
-  .page-wrap {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 28px 28px 80px;
-  }
-  .sheet {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-  }
-
-  /* Hero */
-  .hero {
-    position: relative;
-    padding: 44px 56px 32px;
-    border-bottom: 1px solid var(--border);
-    background:
-      radial-gradient(900px 240px at 88% -40%, var(--accent-soft), transparent 60%),
-      var(--bg);
-  }
-  .hero-grid {
-    display: grid; grid-template-columns: 1fr 1.05fr; gap: 56px;
-    align-items: end;
-  }
-  .eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    color: var(--accent); font-weight: 500;
-    font-family: var(--font-mono);
-    font-size: 11.5px; letter-spacing: 0.02em;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    background: var(--accent-soft);
-    border: 1px solid var(--accent-line);
-    border-radius: 999px;
-    margin-bottom: 20px;
-  }
-  .eyebrow .dot {
-    width: 6px; height: 6px; border-radius: 99px; background: var(--accent);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
-  }
-  .name {
-    font-size: 56px; line-height: 1.02;
-    font-weight: 700; letter-spacing: -0.035em;
-    margin: 0 0 12px;
-  }
-  .name .last { color: var(--fg-muted); font-weight: 400; }
-  .role {
-    font-size: 17px; font-weight: 500; color: var(--fg);
-    letter-spacing: -0.012em;
-    margin: 0;
-  }
-  .role-sub {
-    margin-top: 6px;
-    font-family: var(--font-mono);
-    font-size: 12.5px; color: var(--fg-muted);
-  }
-  .summary {
-    color: var(--fg-muted);
-    font-size: 14.5px; line-height: 1.65;
-    max-width: 540px;
-    margin: 0;
-  }
-  .summary strong { color: var(--fg); font-weight: 600; }
-
-  .meta {
-    margin-top: 28px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid var(--border);
-  }
-  .meta-cell {
-    padding: 16px 18px 14px;
-    border-right: 1px solid var(--border);
-  }
-  .meta-cell:last-child { border-right: none; }
-  .meta-cell:first-child { padding-left: 0; }
-  .meta-label {
-    font-size: 10.5px; letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--fg-faint); font-weight: 500;
-    font-family: var(--font-mono);
-    margin-bottom: 6px;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .meta-value {
-    font-size: 13px; font-weight: 500; color: var(--fg);
-    letter-spacing: -0.005em;
-  }
-  .meta-value.mono { font-family: var(--font-mono); font-weight: 400; font-size: 12.5px; }
-  .meta-value a { color: inherit; text-decoration: none; }
-  .meta-value a:hover { color: var(--accent); }
-
-  /* Body */
-  .body { padding: 32px 56px 48px; }
-
-  .section { margin-top: 44px; }
-  .section:first-child { margin-top: 8px; }
-
-  .section-head {
-    display: flex; align-items: baseline; gap: 12px;
-    margin-bottom: 20px;
-  }
-  .section-num {
-    font-family: var(--font-mono);
-    font-size: 11.5px; color: var(--fg-faint);
-    letter-spacing: 0.04em;
-  }
-  .section-title {
-    font-size: 13px; font-weight: 600;
-    letter-spacing: -0.005em;
-    margin: 0;
-  }
-  .section-rule {
-    flex: 1; height: 1px;
-    background: var(--border);
-    margin-bottom: 4px;
-  }
-  .section-tag {
-    font-family: var(--font-mono);
-    font-size: 10.5px; color: var(--fg-faint);
-    text-transform: uppercase; letter-spacing: 0.06em;
-  }
-
-  /* Experience */
-  .roles { display: grid; gap: 14px; }
-  .role-card {
-    border: 1px solid var(--border);
-    background: var(--bg-card);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-  }
-  .role-head {
-    display: grid;
-    grid-template-columns: 200px 1fr auto;
-    gap: 24px;
-    padding: 20px 22px 16px;
-    border-bottom: 1px dashed var(--border);
-    align-items: baseline;
-  }
-  .role-when {
-    font-family: var(--font-mono);
-    font-size: 11.5px; color: var(--fg-muted);
-  }
-  .role-when .now { color: var(--accent); font-weight: 500; }
-  .role-org { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-faint); margin-top: 4px; font-weight: 500; font-family: var(--font-mono); }
-  .role-title {
-    font-size: 17px; font-weight: 600; letter-spacing: -0.018em;
-    margin: 0 0 4px;
-  }
-  .role-org-name { color: var(--fg-muted); font-size: 13px; font-weight: 500; }
-  .role-meta {
-    text-align: right;
-    font-family: var(--font-mono);
-    font-size: 11px; color: var(--fg-faint);
-  }
-  .role-meta .pin { color: var(--fg-muted); }
-
-  .role-body { padding: 16px 22px 20px; }
-  .role-body.split { display: grid; grid-template-columns: 1fr 280px; gap: 28px; }
-
-  /* Phase callout (mid-role scope change) */
-  .phase {
-    margin-top: 16px;
-    padding: 14px 14px 12px 16px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--bg-subtle);
-    position: relative;
-    overflow: hidden;
-  }
-  .phase::before {
-    content: ''; position: absolute;
-    left: 0; top: 10px; bottom: 10px; width: 2px;
-    background: var(--accent); border-radius: 2px;
-  }
-  .phase-head {
-    display: flex; flex-wrap: wrap; align-items: baseline;
-    gap: 10px; margin-bottom: 10px;
-  }
-  .phase-tag {
-    font-family: var(--font-mono);
-    font-size: 10.5px; letter-spacing: 0.04em;
-    color: var(--accent);
-    background: var(--accent-soft);
-    border: 1px solid var(--accent-line);
-    padding: 2px 7px; border-radius: 99px;
-    text-transform: uppercase;
-  }
-  .phase-title {
-    font-size: 12.5px; font-weight: 600;
-    letter-spacing: -0.005em; color: var(--fg);
-  }
-  .phase-meta {
-    margin-left: auto;
-    font-family: var(--font-mono);
-    font-size: 10.5px; color: var(--fg-faint);
-    letter-spacing: 0.02em;
-  }
-  .mission {
-    font-size: 13px; color: var(--fg-muted); line-height: 1.6;
-    margin: 0 0 14px;
-    padding-left: 14px;
-    border-left: 2px solid var(--accent);
-  }
-  .mission strong { color: var(--fg); font-weight: 600; }
-
-  .impacts { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
-  .impacts li {
-    display: grid; grid-template-columns: 18px 1fr; gap: 10px;
-    font-size: 13px; line-height: 1.55; color: var(--fg);
-  }
-  .impacts li::before {
-    content: ''; width: 5px; height: 5px; border-radius: 99px;
-    background: var(--accent);
-    margin-top: 8px; margin-left: 6px;
-  }
-
-  .role-side {
-    border-left: 1px solid var(--border);
-    padding-left: 24px;
-    display: grid; gap: 14px; align-content: start;
-  }
-  .role-side-label {
-    font-family: var(--font-mono); font-size: 10px;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--fg-faint); margin-bottom: 8px;
-  }
-  .stack-chips { display: flex; flex-wrap: wrap; gap: 5px; }
-  .chip {
-    display: inline-flex; align-items: center;
-    font-size: 11px; line-height: 1;
-    padding: 5px 8px; border-radius: 5px;
-    background: var(--bg-muted);
-    color: var(--fg);
-    border: 1px solid var(--border);
-    font-weight: 500;
-  }
-  .chip.accent {
-    background: var(--accent-soft);
-    color: var(--accent);
-    border-color: var(--accent-line);
-  }
-
-  /* Skills */
-  .skills-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-  }
-  .skill-card {
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 14px 16px 12px;
-    background: var(--bg-card);
-  }
-  .skill-card .lbl {
-    font-family: var(--font-mono); font-size: 10px;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--fg-faint); margin-bottom: 6px;
-  }
-  .skill-card .nm {
-    font-size: 13px; font-weight: 600; letter-spacing: -0.005em;
-  }
-
-  /* Projects */
-  .inits {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-  }
-  .init {
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    background: var(--bg-card);
-    padding: 18px 20px 16px;
-    display: grid; gap: 10px;
-  }
-  .init-head {
-    display: flex; align-items: flex-start; justify-content: space-between;
-    gap: 12px;
-  }
-  .init-title { font-size: 14.5px; font-weight: 600; letter-spacing: -0.012em; margin: 0; }
-  .init-tag {
-    font-family: var(--font-mono); font-size: 10px;
-    color: var(--fg-faint); letter-spacing: 0.06em;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-  .init-objective { font-size: 12.5px; color: var(--fg-muted); line-height: 1.55; margin: 0; }
-  .init-points { display: grid; gap: 6px; margin: 4px 0 0; padding: 0; list-style: none; }
-  .init-points li {
-    display: grid; grid-template-columns: 14px 1fr; gap: 8px;
-    font-size: 12px; line-height: 1.5; color: var(--fg);
-  }
-  .init-points li::before {
-    content: ''; width: 4px; height: 4px; border-radius: 99px;
-    background: var(--accent);
-    margin-top: 8px; margin-left: 5px;
-  }
-
-  /* Two col */
-  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-
-  .list-card {
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    background: var(--bg-card);
-    overflow: hidden;
-  }
-  .list-row {
-    padding: 14px 18px;
-    border-top: 1px solid var(--border);
-    display: grid; grid-template-columns: 1fr auto;
-    gap: 14px; align-items: start;
-  }
-  .list-row:first-child { border-top: none; }
-  .list-row-main { font-size: 13px; font-weight: 600; }
-  .list-row-sub { font-size: 12px; color: var(--fg-muted); margin-top: 2px; font-weight: 400; }
-  .list-row-meta { font-family: var(--font-mono); font-size: 11px; color: var(--fg-faint); text-align: right; white-space: nowrap; }
-  .list-points { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 4px; }
-  .list-points li {
-    display: grid; grid-template-columns: 12px 1fr; gap: 8px;
-    font-size: 12px; line-height: 1.5; color: var(--fg-muted);
-  }
-  .list-points li::before {
-    content: ''; width: 3px; height: 3px; border-radius: 99px;
-    background: var(--fg-faint);
-    margin-top: 8px; margin-left: 4px;
-  }
-
-  /* Footer */
-  .footer {
-    margin-top: 0;
-    padding: 22px 56px 26px;
-    border-top: 1px solid var(--border);
-    display: flex; justify-content: space-between; align-items: center;
-    font-family: var(--font-mono); font-size: 11px; color: var(--fg-faint);
-  }
-  .footer .left { display: flex; gap: 18px; align-items: center; }
-  .footer .right { display: flex; gap: 18px; }
-  .footer-mark {
-    display: inline-flex; align-items: center; gap: 7px;
-    color: var(--fg-muted); font-weight: 500;
-  }
-  .footer-mark .glyph {
-    width: 14px; height: 14px; border-radius: 4px;
-    background: var(--fg); color: var(--bg);
-    display: grid; place-items: center; font-size: 9px; font-weight: 700;
-  }
-
-  .page-break { break-before: page; height: 0; }
-
-  /* ─────────  A4 PRINT  ─────────
-     Multi-page friendly. Content paces itself; no forced compression. */
-  @media print {
-    @page {
-      size: A4;
-      margin: 16mm 14mm 14mm;
-    }
-    html, body {
-      background: #fff !important;
-      color: #09090b;
-      font-size: 10.5pt;
-      line-height: 1.5;
-    }
-    .chrome, .no-print { display: none !important; }
-    .page-wrap { padding: 0; max-width: none; margin: 0; }
-    .sheet { border: none; box-shadow: none; border-radius: 0; background: #fff; }
-
-    /* Hero — proportionate, not crammed */
-    .hero {
-      padding: 0 0 8mm;
-      background: #fff;
-      border-bottom: 0.6pt solid #d4d4d8;
-      margin-bottom: 6mm;
-    }
-    .hero::before, .hero::after { display: none; }
-    .hero-grid { gap: 12mm; }
-    .name { font-size: 30pt; line-height: 1.05; margin-bottom: 6pt; }
-    .role { font-size: 13pt; }
-    .role-sub { font-size: 9.5pt; }
-    .summary { font-size: 10.5pt; line-height: 1.55; max-width: none; }
-    .eyebrow { margin-bottom: 10pt; padding: 2pt 8pt; font-size: 8pt; }
-    .meta { margin-top: 8mm; }
-    .meta-cell { padding: 8pt 12pt 6pt; }
-    .meta-cell:first-child { padding-left: 0; }
-    .meta-label { font-size: 7.5pt; margin-bottom: 3pt; }
-    .meta-value { font-size: 10pt; }
-    .meta-value.mono { font-size: 9.5pt; }
-
-    /* Body rhythm */
-    .body { padding: 0; }
-    .section { margin-top: 9mm; }
-    .section:first-child { margin-top: 2mm; }
-    .section-head { margin-bottom: 5mm; }
-    .section-title { font-size: 10.5pt; }
-    .section-num, .section-tag { font-size: 8.5pt; }
-
-    /* Cards never split awkwardly */
-    .role-card, .init, .list-card, .skill-card,
-    .role-head, .phase {
-      break-inside: avoid;
-      page-break-inside: avoid;
-    }
-    .section-head { break-after: avoid; page-break-after: avoid; }
-    h2, h3 { break-after: avoid; page-break-after: avoid; }
-
-    /* Drop the manual mid-doc page break — let content flow naturally */
-    .page-break { display: none; }
-
-    /* Tighten role/project cards but keep breathing room */
-    .role-head { padding: 12pt 14pt 8pt; gap: 14pt; grid-template-columns: 130pt 1fr auto; }
-    .role-when, .role-meta, .role-org { font-size: 8.5pt; }
-    .role-title { font-size: 12.5pt; }
-    .role-org-name { font-size: 10pt; }
-    .role-body { padding: 10pt 14pt 12pt; }
-    .role-body.split { grid-template-columns: 1fr 200pt; gap: 14pt; }
-    .mission { font-size: 10pt; padding-left: 10pt; margin-bottom: 9pt; }
-    .impacts li { font-size: 10pt; line-height: 1.5; }
-    .role-side { padding-left: 12pt; gap: 9pt; }
-    .role-side-label { font-size: 7.5pt; margin-bottom: 5pt; }
-    .chip { font-size: 8pt; padding: 3pt 6pt; }
-
-    .phase { margin-top: 9pt; padding: 9pt 10pt 7pt 12pt; background: #fafafa; }
-    .phase-tag { font-size: 7.5pt; padding: 1pt 6pt; }
-    .phase-title { font-size: 10pt; }
-    .phase-meta { font-size: 8pt; }
-
-    .skills-grid { gap: 7pt; }
-    .skill-card { padding: 9pt 11pt 7pt; }
-    .skill-card .lbl { font-size: 7.5pt; }
-    .skill-card .nm { font-size: 10pt; }
-
-    .inits { gap: 8pt; }
-    .init { padding: 11pt 13pt 10pt; gap: 6pt; }
-    .init-title { font-size: 11.5pt; }
-    .init-tag { font-size: 7.5pt; }
-    .init-objective { font-size: 9.5pt; }
-    .init-points li { font-size: 9.5pt; }
-
-    .twocol { gap: 12pt; }
-    .list-row { padding: 9pt 12pt; }
-    .list-row-main { font-size: 10.5pt; }
-    .list-row-sub { font-size: 9pt; }
-    .list-points li { font-size: 9pt; }
-
-    .footer {
-      margin-top: 8mm;
-      padding: 4mm 0 0;
-      font-size: 8pt;
-    }
-
-    /* Avoid orphan widows / first-line break weirdness */
-    p, li { orphans: 3; widows: 3; }
-  }
-
-
-
-  /* ─────────  DEVICE-AWARE RESPONSIVE CONTROLS  ───────── */
-  .device-indicator {
-    display: none;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    color: var(--fg-muted);
-    border: 1px solid var(--border);
-    background: var(--bg-card);
-    border-radius: 999px;
-    padding: 5px 8px;
-  }
-  .device-indicator::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 99px;
-    background: var(--accent);
-    box-shadow: 0 0 0 3px var(--accent-soft);
-  }
-
-  .mobile-actions { display: none; }
-
-  @media screen and (max-width: 640px) {
-    body {
-      font-size: 13px;
-      line-height: 1.6;
-      background: var(--bg);
-    }
-
-    .chrome { position: sticky; }
-    .chrome-inner {
-      padding: 10px 14px;
-      gap: 10px;
-    }
-    .brand { gap: 8px; font-size: 12.5px; }
-    .brand-sub, .brand-slash, .crumb, .kbd { display: none; }
-    .chrome-actions { gap: 6px; }
-    .btn {
-      padding: 7px 9px;
-      font-size: 12px;
-      min-height: 34px;
-    }
-    .btn.primary span:not(.kbd) { display: none; }
-    .device-indicator { display: inline-flex; }
-
-    .page-wrap {
-      padding: 0;
-      max-width: none;
-    }
-    .sheet {
-      border-radius: 0;
-      border-left: 0;
-      border-right: 0;
-      box-shadow: none;
-    }
-
-    .hero {
-      padding: 28px 20px 22px;
-      background:
-        radial-gradient(520px 180px at 92% -35%, var(--accent-soft), transparent 60%),
-        var(--bg);
-    }
-    .hero-grid {
-      grid-template-columns: 1fr;
-      gap: 20px;
-      align-items: start;
-    }
-    .eyebrow {
-      font-size: 10.5px;
-      margin-bottom: 14px;
-    }
-    .name {
-      font-size: clamp(36px, 12vw, 46px);
-      line-height: 1.02;
-      margin-bottom: 10px;
-    }
-    .role { font-size: 15.5px; }
-    .role-sub { font-size: 11.5px; }
-    .summary {
-      font-size: 13.5px;
-      line-height: 1.65;
-      max-width: none;
-    }
-
-    .meta {
-      grid-template-columns: 1fr;
-      margin-top: 22px;
-    }
-    .meta-cell {
-      padding: 12px 0;
-      border-right: none;
-      border-bottom: 1px solid var(--border);
-    }
-    .meta-cell:last-child { border-bottom: none; }
-    .meta-label { font-size: 9.5px; }
-    .meta-value, .meta-value.mono {
-      font-size: 12.5px;
-      overflow-wrap: anywhere;
-    }
-
-    .body { padding: 24px 18px 34px; }
-    .section { margin-top: 34px; }
-    .section:first-child { margin-top: 4px; }
-    .section-head {
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-    .section-rule { display: none; }
-    .section-tag { display: none; }
-
-    .roles { gap: 12px; }
-    .role-card { border-radius: 14px; }
-    .role-head {
-      grid-template-columns: 1fr;
-      gap: 8px;
-      padding: 16px 16px 12px;
-    }
-    .role-title { font-size: 15.5px; }
-    .role-meta { text-align: left; }
-    .role-body,
-    .role-body.split {
-      display: block;
-      padding: 14px 16px 16px;
-    }
-    .mission {
-      font-size: 12.5px;
-      margin-bottom: 12px;
-    }
-    .impacts { gap: 7px; }
-    .impacts li {
-      grid-template-columns: 14px 1fr;
-      gap: 8px;
-      font-size: 12.5px;
-    }
-    .impacts li::before {
-      width: 4px;
-      height: 4px;
-      margin-left: 4px;
-    }
-
-    .phase {
-      margin-top: 14px;
-      padding: 12px 12px 11px 14px;
-    }
-    .phase-head {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 6px;
-    }
-    .phase-meta { margin-left: 0; }
-
-    .role-side {
-      border-left: none;
-      border-top: 1px solid var(--border);
-      padding-left: 0;
-      padding-top: 14px;
-      margin-top: 14px;
-      gap: 12px;
-    }
-    .stack-chips { gap: 6px; }
-    .chip { font-size: 10.5px; padding: 5px 7px; }
-
-    .skills-grid,
-    .inits,
-    .twocol {
-      grid-template-columns: 1fr;
-    }
-    .skill-card { padding: 13px 14px; }
-    .init { padding: 16px 16px 15px; }
-    .init-head {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 6px;
-    }
-    .init-tag { white-space: normal; }
-    .init-objective { font-size: 12.5px; }
-    .init-points li { font-size: 12px; }
-
-    .list-row {
-      grid-template-columns: 1fr;
-      gap: 8px;
-      padding: 13px 15px;
-    }
-    .list-row-meta { text-align: left; }
-
-    .footer {
-      padding: 18px 20px 22px;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
-    }
-    .footer .left,
-    .footer .right {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 6px;
-    }
-  }
-
-  @media screen and (min-width: 641px) and (max-width: 1080px) {
-    .device-indicator { display: inline-flex; }
-    .page-wrap { padding: 22px 22px 60px; }
-    .hero-grid { grid-template-columns: 1fr; gap: 28px; }
-    .meta { grid-template-columns: repeat(2, 1fr); }
-    .meta-cell { border-bottom: 1px solid var(--border); }
-    .skills-grid { grid-template-columns: repeat(2, 1fr); }
-    .inits, .twocol { grid-template-columns: 1fr; }
-    .role-head { grid-template-columns: 1fr; gap: 6px; }
-    .role-meta { text-align: left; }
-    .role-body.split { grid-template-columns: 1fr; }
-    .role-side { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 14px; }
-    .hero, .body, .footer { padding-left: 28px; padding-right: 28px; }
-  }
-</style>
+  <link rel="stylesheet" href="./styles.css" />
 </head>
+
 <body>
 
-<header class="chrome no-print">
-  <div class="chrome-inner">
-    <span class="brand">
-      <span class="brand-mark">K</span>
-      <span>alnemer</span>
-      <span class="brand-slash">/</span>
-      <span class="brand-sub">resume</span>
-    </span>
-    <span class="crumb">
-      <span class="crumb-dot"></span>
-      profile
-    </span>
-    <span class="device-indicator" id="deviceLabel">Desktop</span>
-    <div class="chrome-actions">
-      <button class="btn" id="themeBtn" aria-label="Toggle dark mode">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <span id="themeLbl">Dark</span>
-      </button>
-      <button class="btn primary" onclick="window.print()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-        Download PDF
-        <span class="kbd">⌘P</span>
-      </button>
+  <header class="chrome no-print">
+    <div class="chrome-inner">
+
+      <span class="brand">
+        <span class="brand-mark">K</span>
+        <span>alnemer</span>
+        <span class="brand-slash">/</span>
+        <span class="brand-sub">resume</span>
+      </span>
+
+      <span class="crumb">
+        <span class="crumb-dot"></span>
+        profile
+      </span>
+
+      <div class="chrome-actions">
+
+        <button class="btn" id="themeBtn" aria-label="Toggle dark mode">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+              d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+
+          <span id="themeLbl">Dark</span>
+        </button>
+
+        <button class="btn primary" onclick="window.print()">
+
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+
+            <path d="M6 9V2h12v7" />
+
+            <path
+              d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+
+            <rect x="6" y="14" width="12" height="8" />
+          </svg>
+
+          Download PDF
+        </button>
+
+      </div>
+
     </div>
-  </div>
-</header>
+  </header>
 
-<main class="page-wrap">
-<div class="sheet">
+  <main class="page-wrap">
 
-  <!-- ─────────  HEADER  ───────── -->
-  <section class="hero" data-screen-label="Header">
-    <div class="hero-grid">
-      <div>
-        <span class="eyebrow"><span class="dot"></span> Data &amp; Analytics</span>
-        <h1 class="name">Khaled <span class="last">Alnemer</span></h1>
-        <p class="role">National Data &amp; Analytics Leader</p>
-        <p class="role-sub">Building Statistical Data Platforms</p>
-      </div>
+    <div class="sheet">
 
-      <div>
-        <p class="summary" data-screen-label="01 Summary">
-          Business Intelligence leader with experience progressing from banking analytics to
-          public-sector data leadership. Currently leading <strong>national-scale analytics
-          initiatives within the Ministry of Education</strong>, focused on building governed data
-          ecosystems and enabling decision intelligence — with prior work establishing the Data
-          Office at the National eLearning Center, and contributing to enterprise data warehousing
-          at Alinma and Albilad.
-        </p>
-      </div>
-    </div>
+      <section class="hero">
 
-    <div class="meta">
-      <div class="meta-cell">
-        <div class="meta-label">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Location
-        </div>
-        <div class="meta-value">Riyadh, Saudi Arabia</div>
-      </div>
-      <div class="meta-cell">
-        <div class="meta-label">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
-          Phone
-        </div>
-        <div class="meta-value mono">+966 54 843 3224</div>
-      </div>
-      <div class="meta-cell">
-        <div class="meta-label">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          Email
-        </div>
-        <div class="meta-value mono"><a href="mailto:khaledalnemer@gmail.com">khaledalnemer@gmail.com</a></div>
-      </div>
-      <div class="meta-cell">
-        <div class="meta-label">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          Website
-        </div>
-        <div class="meta-value mono"><a href="https://khaledalnemer.sa" target="_blank" rel="noopener">khaledalnemer.sa</a></div>
-      </div>
-    </div>
-  </section>
+        <div class="hero-grid">
 
-  <div class="body">
+          <div>
 
-    <!-- ─────────  EXPERIENCE  ───────── -->
-    <section class="section" data-screen-label="02 Experience">
-      <div class="section-head">
-        <span class="section-num">01</span>
-        <h2 class="section-title">Experience</h2>
-        <span class="section-rule"></span>
-        <span class="section-tag">2017 → present</span>
-      </div>
+            <span class="eyebrow">
+              <span class="dot"></span>
+              Data & Analytics
+            </span>
 
-      <div class="roles">
+            <h1 class="name">
+              Khaled <span class="last">Alnemer</span>
+            </h1>
 
-        <article class="role-card">
-          <header class="role-head">
-            <div>
-              <div class="role-when"><span class="now">●</span> Jun 2024 — Present</div>
-              <div class="role-org">Public-sector technology</div>
-            </div>
-            <div>
-              <h3 class="role-title">Senior Business Intelligence (Team Lead)</h3>
-              <div class="role-org-name">Tatweer Educational Technologies</div>
-            </div>
-            <div class="role-meta">
-              <div class="pin">Riyadh</div>
-              <div>Ministry of Education</div>
-            </div>
-          </header>
-          <div class="role-body split">
-            <div>
-              <p class="mission">
-                <strong>Mandate —</strong> Lead national-scale analytics initiatives within the
-                Ministry of Education, focused on building governed data ecosystems and enabling
-                decision intelligence.
-              </p>
-              <ul class="impacts">
-                <li><span>Designed unified analytical layers aligned with national KPI frameworks.</span></li>
-                <li><span>Enabled cross-system data integration to support executive reporting.</span></li>
-                <li><span>Implemented governed data ingestion using Master Data models (MDS).</span></li>
-                <li><span>Delivered executive dashboards supporting strategic and operational decisions.</span></li>
-              </ul>
+            <p class="role">
+              National Data & Analytics Leader
+            </p>
 
-              <div class="phase">
-                <div class="phase-head">
-                  <span class="phase-tag">Nov 2025 →</span>
-                  <span class="phase-title">Expanded leadership across the Data function</span>
-                  <span class="phase-meta">~18 team members · BI + Data Engineering</span>
-                </div>
-                <ul class="impacts">
-                  <li><span>Lead the full Data function, aligning Business Intelligence and Data Engineering teams under a shared delivery model.</span></li>
-                  <li><span>Strengthen collaboration between technical teams and business stakeholders to drive sustainable data value.</span></li>
-                  <li><span>Improve coordination between analytics and engineering capabilities, contributing to data-product maturity through policies and operational procedures.</span></li>
-                  <li><span>Support structured governance and scalable delivery practices while developing leadership and administrative management capabilities.</span></li>
-                </ul>
-              </div>
-            </div>
-            <aside class="role-side">
-              <div>
-                <div class="role-side-label">Current scope</div>
-                <div class="stack-chips">
-                  <span class="chip accent">Data Function Lead</span>
-                  <span class="chip accent">~18 reports</span>
-                  <span class="chip">BI</span>
-                  <span class="chip">Data Engineering</span>
-                </div>
-              </div>
-              <div>
-                <div class="role-side-label">Focus</div>
-                <div class="stack-chips">
-                  <span class="chip">National KPIs</span>
-                  <span class="chip">Governance</span>
-                  <span class="chip">MDS</span>
-                  <span class="chip">Executive Dashboards</span>
-                  <span class="chip">Integration</span>
-                </div>
-              </div>
-            </aside>
+            <p class="role-sub">
+              Building Statistical Data Platforms
+            </p>
+
           </div>
-        </article>
 
-        <article class="role-card">
-          <header class="role-head">
-            <div>
-              <div class="role-when">Nov 2021 — Jun 2024</div>
-              <div class="role-org">Public-sector</div>
-            </div>
-            <div>
-              <h3 class="role-title">Senior Business Intelligence Specialist (Team Lead)</h3>
-              <div class="role-org-name">National eLearning Center</div>
-            </div>
-            <div class="role-meta">
-              <div class="pin">Riyadh</div>
-              <div>Data Office</div>
-            </div>
-          </header>
-          <div class="role-body split">
-            <div>
-              <p class="mission">
-                <strong>Mandate —</strong> Establish the Data Office and lead the development of
-                institutional analytics capabilities.
-              </p>
-              <ul class="impacts">
-                <li><span>Built structured data models supporting performance monitoring.</span></li>
-                <li><span>Introduced governance frameworks improving data quality and ownership.</span></li>
-                <li><span>Delivered analytics solutions aligned with national digital transformation goals.</span></li>
-                <li><span>Enabled leadership visibility through advanced reporting systems.</span></li>
-              </ul>
-            </div>
-            <aside class="role-side">
-              <div>
-                <div class="role-side-label">Focus</div>
-                <div class="stack-chips">
-                  <span class="chip accent">Data Office</span>
-                  <span class="chip">Governance</span>
-                  <span class="chip">Data Quality</span>
-                  <span class="chip">Performance Reporting</span>
-                </div>
-              </div>
-            </aside>
+          <div>
+
+            <p class="summary">
+
+              Business Intelligence leader with experience progressing from
+              banking analytics to public-sector data leadership.
+
+              Currently leading national-scale analytics initiatives within
+              the Ministry of Education, focused on building governed data
+              ecosystems and enabling decision intelligence.
+
+            </p>
+
           </div>
-        </article>
 
-        <article class="role-card">
-          <header class="role-head">
-            <div>
-              <div class="role-when">Apr 2020 — Nov 2021</div>
-              <div class="role-org">Banking</div>
-            </div>
-            <div>
-              <h3 class="role-title">Senior Business Intelligence Specialist</h3>
-              <div class="role-org-name">Alinma Bank</div>
-            </div>
-            <div class="role-meta">
-              <div class="pin">Riyadh</div>
-            </div>
-          </header>
-          <div class="role-body">
-            <ul class="impacts">
-              <li><span>Contributed to enterprise Data Warehouse architecture development.</span></li>
-              <li><span>Improved reporting efficiency across business units.</span></li>
-              <li><span>Delivered insights supporting financial performance and growth.</span></li>
-            </ul>
+        </div>
+
+        <div class="meta">
+
+          <div class="meta-cell">
+            <div class="meta-label">Location</div>
+            <div class="meta-value">Riyadh, Saudi Arabia</div>
           </div>
-        </article>
 
-        <article class="role-card">
-          <header class="role-head">
-            <div>
-              <div class="role-when">Apr 2017 — Apr 2020</div>
-              <div class="role-org">Banking</div>
+          <div class="meta-cell">
+            <div class="meta-label">Phone</div>
+            <div class="meta-value mono">
+              +966 54 843 3224
             </div>
-            <div>
-              <h3 class="role-title">Business Intelligence Officer</h3>
-              <div class="role-org-name">Albilad Bank</div>
-            </div>
-            <div class="role-meta">
-              <div class="pin">Riyadh</div>
-            </div>
-          </header>
-          <div class="role-body">
-            <ul class="impacts">
-              <li><span>Developed SAS-based dashboards for sales and financing analytics.</span></li>
-              <li><span>Implemented Row-Level Security (RLS) for data governance.</span></li>
-              <li><span>Supported real estate financing performance analysis.</span></li>
-            </ul>
           </div>
-        </article>
 
-      </div>
-    </section>
+          <div class="meta-cell">
+            <div class="meta-label">Email</div>
+            <div class="meta-value mono">
+              khaledalnemer@gmail.com
+            </div>
+          </div>
 
-    <!-- ─────────  SKILLS  ───────── -->
-    <section class="section" data-screen-label="03 Skills">
-      <div class="section-head">
-        <span class="section-num">02</span>
-        <h2 class="section-title">Skills</h2>
-        <span class="section-rule"></span>
-        <span class="section-tag">Capability domains</span>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <div class="lbl">Platforms</div>
-          <div class="nm">National Data Platforms &amp; Statistical Systems</div>
+          <div class="meta-cell">
+            <div class="meta-label">Website</div>
+            <div class="meta-value mono">
+              <a href="https://khaledalnemer.sa" target="_blank">
+                khaledalnemer.sa
+              </a>
+            </div>
+          </div>
+
         </div>
-        <div class="skill-card">
-          <div class="lbl">Governance</div>
-          <div class="nm">Data Governance — DAMA / NDMO Alignment</div>
-        </div>
-        <div class="skill-card">
-          <div class="lbl">Indicators</div>
-          <div class="nm">KPI Design &amp; Indicator Standardization</div>
-        </div>
-        <div class="skill-card">
-          <div class="lbl">Integration</div>
-          <div class="nm">Data Integration &amp; Interoperability</div>
-        </div>
-        <div class="skill-card">
-          <div class="lbl">Architecture</div>
-          <div class="nm">Data Warehousing &amp; Analytical Layers</div>
-        </div>
-        <div class="skill-card">
-          <div class="lbl">Decisioning</div>
-          <div class="nm">Executive Dashboards &amp; Decision Intelligence</div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ─────────  PROJECTS  ───────── -->
-    <section class="section" data-screen-label="04 Projects">
-      <div class="section-head">
-        <span class="section-num">03</span>
-        <h2 class="section-title">Projects</h2>
-        <span class="section-rule"></span>
-        <span class="section-tag">Selected initiatives</span>
-      </div>
-      <div class="inits">
+      </section>
 
-        <article class="init">
-          <header class="init-head">
-            <h3 class="init-title">National Economic Indicators Platform</h3>
-            <span class="init-tag">Concept &amp; Prototype</span>
-          </header>
-          <p class="init-objective">
-            A unified analytical platform for national-level indicators aligned with statistical
-            standards.
-          </p>
-          <ul class="init-points">
-            <li><span>Developed a KPI Dictionary standardizing definitions for GDP, inflation, employment, and education indicators.</span></li>
-            <li><span>Built executive dashboards with trend analysis, regional comparison, and forecasting scenarios.</span></li>
-            <li><span>Applied governance models — data ownership, validation workflows, and version control.</span></li>
-          </ul>
-        </article>
+      <div class="body">
 
-        <article class="init">
-          <header class="init-head">
-            <h3 class="init-title">Unified Government Data Layer</h3>
-            <span class="init-tag">Analytical Integration Model</span>
-          </header>
-          <p class="init-objective">
-            A centralized data layer integrating multiple government systems into a unified
-            reporting structure.
-          </p>
-          <ul class="init-points">
-            <li><span>Designed dimensional models enabling cross-domain analytics.</span></li>
-            <li><span>Integrated operational systems into a unified reporting structure.</span></li>
-            <li><span>Implemented master data governance using MDS.</span></li>
-          </ul>
-        </article>
+        <!-- EXPERIENCE -->
 
-        <article class="init">
-          <header class="init-head">
-            <h3 class="init-title">Data Governance &amp; Quality Framework</h3>
-            <span class="init-tag">Implementation</span>
-          </header>
-          <p class="init-objective">
-            A governance model designed to enhance data trust and reliability across analytical
-            workflows.
-          </p>
-          <ul class="init-points">
-            <li><span>Defined the data ownership structure (Owner / Steward).</span></li>
-            <li><span>Built data quality rules covering completeness, accuracy, and timeliness.</span></li>
-            <li><span>Developed monitoring dashboards for data validation and auditing.</span></li>
-          </ul>
-        </article>
+        <section class="section">
 
-        <article class="init">
-          <header class="init-head">
-            <h3 class="init-title">Executive Decision Intelligence Dashboards</h3>
-            <span class="init-tag">Leadership Enablement</span>
-          </header>
-          <p class="init-objective">
-            Executive-level dashboards supporting strategic decision-making across operational and
-            national tiers.
-          </p>
-          <ul class="init-points">
-            <li><span>Designed KPI-driven dashboards for performance tracking.</span></li>
-            <li><span>Enabled drill-down analysis from national to operational level.</span></li>
-            <li><span>Applied storytelling techniques for executive consumption.</span></li>
-          </ul>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- ─────────  CERTS + EDUCATION  ───────── -->
-    <section class="section" data-screen-label="05 Credentials">
-      <div class="twocol">
-
-        <div>
           <div class="section-head">
-            <span class="section-num">04</span>
-            <h2 class="section-title">Certifications</h2>
-            <span class="section-rule"></span>
-          </div>
-          <div class="list-card">
-            <div class="list-row">
-              <div>
-                <div class="list-row-main">Certified Data Management Professional (CDMP)</div>
-                <div class="list-row-sub">DAMA International</div>
-              </div>
-            </div>
-            <div class="list-row">
-              <div>
-                <div class="list-row-main">ROI Methodology Master Class</div>
-                <div class="list-row-sub">ROI Institute</div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div>
-          <div class="section-head">
-            <span class="section-num">05</span>
-            <h2 class="section-title">Education</h2>
+            <span class="section-num">01</span>
+
+            <h2 class="section-title">
+              Experience
+            </h2>
+
             <span class="section-rule"></span>
+
           </div>
-          <div class="list-card">
-            <div class="list-row">
-              <div>
-                <div class="list-row-main">Bachelor of Information Systems (Computer Science)</div>
-                <div class="list-row-sub">King Khalid University, Abha</div>
-                <ul class="list-points">
-                  <li><span>Specialized in systems analysis, database design, and information architecture.</span></li>
-                  <li><span>Built foundational expertise in data modeling and structured data environments.</span></li>
-                  <li><span>Led the Student Computer Club, enhancing leadership and technical collaboration.</span></li>
-                </ul>
-              </div>
-              <div class="list-row-meta"><div>2011 — 2016</div></div>
-            </div>
+
+          <!-- Add your experience cards here -->
+
+        </section>
+
+        <!-- SKILLS -->
+
+        <section class="section">
+
+          <div class="section-head">
+
+            <span class="section-num">02</span>
+
+            <h2 class="section-title">
+              Skills
+            </h2>
+
+            <span class="section-rule"></span>
+
           </div>
-        </div>
+
+          <!-- Add skills -->
+
+        </section>
+
+        <!-- PROJECTS -->
+
+        <section class="section">
+
+          <div class="section-head">
+
+            <span class="section-num">03</span>
+
+            <h2 class="section-title">
+              Projects
+            </h2>
+
+            <span class="section-rule"></span>
+
+          </div>
+
+          <!-- Add projects -->
+
+        </section>
 
       </div>
-    </section>
 
-  </div>
+      <footer class="footer">
 
-  <footer class="footer">
-    <div class="left">
-      <span class="footer-mark"><span class="glyph">K</span> Khaled Alnemer</span>
-      <span>National Data &amp; Analytics Leader</span>
+        <div class="left">
+
+          <span class="footer-mark">
+
+            <span class="glyph">K</span>
+
+            Khaled Alnemer
+
+          </span>
+
+        </div>
+
+        <div class="right">
+
+          <span>Riyadh, Saudi Arabia</span>
+
+        </div>
+
+      </footer>
+
     </div>
-    <div class="right">
-      <span>Riyadh, KSA</span>
-      <span>· References available on request</span>
-    </div>
-  </footer>
 
-</div>
-</main>
+  </main>
 
-<script>
-  (function() {
-    var root = document.documentElement;
-    var btn = document.getElementById('themeBtn');
-    var lbl = document.getElementById('themeLbl');
-    var deviceLabel = document.getElementById('deviceLabel');
+  <script>
+    function detectDevice() {
+      const width = window.innerWidth;
+      const root = document.documentElement;
 
-    function applyDeviceMode() {
-      var width = window.innerWidth || document.documentElement.clientWidth;
-      root.classList.remove('device-mobile', 'device-tablet', 'device-desktop');
+      root.classList.remove(
+        "device-mobile",
+        "device-tablet",
+        "device-desktop"
+      );
 
       if (width <= 640) {
-        root.classList.add('device-mobile');
-        if (deviceLabel) deviceLabel.textContent = 'Mobile';
-      } else if (width <= 1080) {
-        root.classList.add('device-tablet');
-        if (deviceLabel) deviceLabel.textContent = 'Tablet';
+        root.classList.add("device-mobile");
+      } else if (width <= 1024) {
+        root.classList.add("device-tablet");
       } else {
-        root.classList.add('device-desktop');
-        if (deviceLabel) deviceLabel.textContent = 'Desktop';
+        root.classList.add("device-desktop");
       }
     }
 
-    applyDeviceMode();
-    window.addEventListener('resize', applyDeviceMode, { passive: true });
-    window.addEventListener('orientationchange', applyDeviceMode, { passive: true });
+    window.addEventListener("load", detectDevice);
+    window.addEventListener("resize", detectDevice);
 
-    var saved = localStorage.getItem('theme');
-    if (saved === 'dark') {
-      root.setAttribute('data-theme','dark');
-      if (lbl) lbl.textContent = 'Light';
-    }
+    (function () {
 
-    if (btn) {
-      btn.addEventListener('click', function() {
-        var isDark = root.getAttribute('data-theme') === 'dark';
-        if (isDark) {
-          root.removeAttribute('data-theme');
-          if (lbl) lbl.textContent = 'Dark';
-          localStorage.setItem('theme','light');
-        } else {
-          root.setAttribute('data-theme','dark');
-          if (lbl) lbl.textContent = 'Light';
-          localStorage.setItem('theme','dark');
-        }
-      });
-    }
-  })();
-</script>
+      const btn = document.getElementById("themeBtn");
+      const lbl = document.getElementById("themeLbl");
+
+      const saved = localStorage.getItem("theme");
+
+      if (saved === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+
+        if (lbl) lbl.textContent = "Light";
+      }
+
+      if (btn) {
+
+        btn.addEventListener("click", function () {
+
+          const isDark =
+            document.documentElement.getAttribute("data-theme") === "dark";
+
+          if (isDark) {
+
+            document.documentElement.removeAttribute("data-theme");
+
+            if (lbl) lbl.textContent = "Dark";
+
+            localStorage.setItem("theme", "light");
+
+          } else {
+
+            document.documentElement.setAttribute("data-theme", "dark");
+
+            if (lbl) lbl.textContent = "Light";
+
+            localStorage.setItem("theme", "dark");
+          }
+
+        });
+
+      }
+
+    })();
+  </script>
+
 </body>
-</html>
 
+</html>
+```
