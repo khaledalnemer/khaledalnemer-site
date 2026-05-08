@@ -1,3 +1,302 @@
+ChatGPT Plus
+
+
+
+
+
+Khaled Alnemer Resume.pdf
+PDF
+بحكم خبرتك فيني وبالاعتماد على السيرة المرفقة احتاج برومت لتصميم سيرة ذاتية احترافية 
+
+
+Resume.html
+File
+طيب انا حجزت دومين وحاب ارفع هذي الصفحة على digitalocean احتاج تكون معي خطوة بخطوة وتعطيني الخطوات وحدة وحدة 
+
+Uploaded image
+
+Uploaded image
+تم
+
+ممتاز. الآن ندخل على أهم خطوة: ربط الدومين الحقيقي.
+
+الخطوة 4 — ربط الدومين مع DigitalOcean
+سنربط:
+
+khaledalnemer.sa
+بالموقع المنشور.
+
+4.1 افتح إعدادات التطبيق
+داخل DigitalOcean:
+
+ادخل على التطبيق الذي أنشأته.
+
+ثم من القائمة الجانبية:
+
+Settings
+ثم:
+
+Domains
+4.2 إضافة الدومين
+اضغط:
+
+Add Domain
+4.3 أضف الدومين
+أدخل:
+
+khaledalnemer.sa
+ثم اضغط:
+
+Add
+4.4 سيعطيك DNS Records
+سيظهر لك غالبًا:
+
+CNAME أو A Record
+مثل:
+
+@
+و
+
+www
+مع قيم مرتبطة بـ DigitalOcean.
+
+مهم جدًا الآن
+نحتاج الذهاب لمكان إدارة الدومين.
+
+غالبًا:
+
+SaudiNIC
+
+أو مزود الدومين الذي اشتريت منه
+
+4.5 افتح DNS Management للدومين
+ابحث عن:
+
+DNS Management
+أو:
+
+Manage DNS
+4.6 أضف Records المطلوبة
+عادة تضيف:
+
+A Record
+Host: @
+Value: [DigitalOcean IP]
+CNAME
+Host: www
+Value: cname.ondigitalocean.app
+لكن لا تعتمد على القيم هنا.
+استخدم القيم التي أعطاها لك DigitalOcean بالضبط.
+
+بعد الإضافة
+انتظر:
+
+5 دقائق إلى ساعة غالبًا
+
+أحيانًا حتى 24 ساعة
+
+ثم DigitalOcean سيقوم تلقائيًا بـ:
+
+SSL Certificate
+
+HTTPS
+
+حماية الاتصال
+
+المطلوب منك الآن
+أرسل لي صورة من:
+
+صفحة Domains داخل DigitalOcean
+
+أو
+
+الـ DNS Records التي طلبها منك
+
+حتى أعطيك القيم الصحيحة خطوة بخطوة بدون خطأ.
+
+
+جميل احتاج الى تحديث على الصفحة ويكون فيه تحكم اذا كان المتصفح جوال او لابتوب 
+
+Thought for 4s
+نعم. صفحتك فيها أساس جيد للـ responsive لأن فيها viewport و CSS media queries، لكن نضيف تحكم أوضح حسب نوع الجهاز: Mobile / Tablet / Desktop مع تعديل تلقائي للعرض. 
+
+
+الخطوة 5 — إضافة Device Controller
+افتح ملف:
+
+index.html
+ثم ابحث عن هذا السطر داخل <body>:
+
+<header class="chrome no-print">
+وقبله مباشرة أضف:
+
+<script>
+  function detectDevice() {
+    const width = window.innerWidth;
+    const root = document.documentElement;
+
+    root.classList.remove("device-mobile", "device-tablet", "device-desktop");
+
+    if (width <= 640) {
+      root.classList.add("device-mobile");
+    } else if (width <= 1024) {
+      root.classList.add("device-tablet");
+    } else {
+      root.classList.add("device-desktop");
+    }
+  }
+
+  window.addEventListener("load", detectDevice);
+  window.addEventListener("resize", detectDevice);
+</script>
+الخطوة 6 — إضافة CSS للتحكم بالجوال واللابتوب
+ابحث عن نهاية وسم <style> قبل:
+
+</style>
+وأضف قبله مباشرة:
+
+/* Device-aware layout control */
+
+.device-mobile body {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.device-mobile .page-wrap {
+  padding: 0;
+}
+
+.device-mobile .sheet {
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+}
+
+.device-mobile .hero {
+  padding: 28px 20px 22px;
+}
+
+.device-mobile .hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+
+.device-mobile .name {
+  font-size: 38px;
+}
+
+.device-mobile .summary {
+  font-size: 13.5px;
+}
+
+.device-mobile .meta {
+  grid-template-columns: 1fr;
+}
+
+.device-mobile .meta-cell {
+  border-right: none;
+  border-bottom: 1px solid var(--border);
+  padding-left: 0;
+}
+
+.device-mobile .body {
+  padding: 24px 20px 36px;
+}
+
+.device-mobile .role-head {
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.device-mobile .role-body.split {
+  grid-template-columns: 1fr;
+}
+
+.device-mobile .role-side {
+  border-left: none;
+  border-top: 1px solid var(--border);
+  padding-left: 0;
+  padding-top: 14px;
+}
+
+.device-mobile .skills-grid,
+.device-mobile .inits,
+.device-mobile .twocol {
+  grid-template-columns: 1fr;
+}
+
+.device-mobile .footer {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 20px;
+}
+
+.device-tablet .hero-grid {
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+.device-tablet .skills-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.device-tablet .inits,
+.device-tablet .twocol {
+  grid-template-columns: 1fr;
+}
+
+.device-desktop .page-wrap {
+  max-width: 1180px;
+}
+الخطوة 7 — حفظ التعديل في GitHub
+بعد الإضافة:
+
+اضغط Commit changes
+
+انتظر DigitalOcean يعمل Deploy تلقائي
+
+افتح الموقع من الجوال واللابتوب
+
+النتيجة:
+
+الجوال: صفحة طولية مريحة
+
+اللابتوب: Layout عريض واحترافي
+
+التابلت: وسط بين الاثنين
+
+بعد ما تطبقها، أرسل صورة من الجوال أو اللابتوب إذا ظهر أي خلل.
+
+
+
+Pasted code.html
+File
+هذا الملف كامل عدل عليه واعطني 
+
+Thought for 27s
+تم تعديل الملف كاملًا وإضافة:
+
+تحكم تلقائي حسب الجهاز: Mobile / Tablet / Desktop
+
+تحسين عرض الجوال بشكل مستقل
+
+تحسين التابلت واللابتوب
+
+إصلاح عرض الإيميل بدل [email protected]
+
+إزالة كود Cloudflare غير المناسب للـ Static Site
+
+الحفاظ على تصميم shadcn والـ A4 Print
+
+الملف الجاهز للرفع على GitHub:
+
+تحميل index-responsive.html
+
+ارفعه على GitHub وغيّر اسمه إلى:
+
+index.html
 <!doctype html>
 <html lang="en">
 <head>
@@ -572,7 +871,212 @@
     p, li { orphans: 3; widows: 3; }
   }
 
-  @media (max-width: 1080px) {
+
+
+  /* ─────────  DEVICE-AWARE RESPONSIVE CONTROLS  ───────── */
+  .device-indicator {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--fg-muted);
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    border-radius: 999px;
+    padding: 5px 8px;
+  }
+  .device-indicator::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 99px;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+
+  .mobile-actions { display: none; }
+
+  @media screen and (max-width: 640px) {
+    body {
+      font-size: 13px;
+      line-height: 1.6;
+      background: var(--bg);
+    }
+
+    .chrome { position: sticky; }
+    .chrome-inner {
+      padding: 10px 14px;
+      gap: 10px;
+    }
+    .brand { gap: 8px; font-size: 12.5px; }
+    .brand-sub, .brand-slash, .crumb, .kbd { display: none; }
+    .chrome-actions { gap: 6px; }
+    .btn {
+      padding: 7px 9px;
+      font-size: 12px;
+      min-height: 34px;
+    }
+    .btn.primary span:not(.kbd) { display: none; }
+    .device-indicator { display: inline-flex; }
+
+    .page-wrap {
+      padding: 0;
+      max-width: none;
+    }
+    .sheet {
+      border-radius: 0;
+      border-left: 0;
+      border-right: 0;
+      box-shadow: none;
+    }
+
+    .hero {
+      padding: 28px 20px 22px;
+      background:
+        radial-gradient(520px 180px at 92% -35%, var(--accent-soft), transparent 60%),
+        var(--bg);
+    }
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    .eyebrow {
+      font-size: 10.5px;
+      margin-bottom: 14px;
+    }
+    .name {
+      font-size: clamp(36px, 12vw, 46px);
+      line-height: 1.02;
+      margin-bottom: 10px;
+    }
+    .role { font-size: 15.5px; }
+    .role-sub { font-size: 11.5px; }
+    .summary {
+      font-size: 13.5px;
+      line-height: 1.65;
+      max-width: none;
+    }
+
+    .meta {
+      grid-template-columns: 1fr;
+      margin-top: 22px;
+    }
+    .meta-cell {
+      padding: 12px 0;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+    .meta-cell:last-child { border-bottom: none; }
+    .meta-label { font-size: 9.5px; }
+    .meta-value, .meta-value.mono {
+      font-size: 12.5px;
+      overflow-wrap: anywhere;
+    }
+
+    .body { padding: 24px 18px 34px; }
+    .section { margin-top: 34px; }
+    .section:first-child { margin-top: 4px; }
+    .section-head {
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .section-rule { display: none; }
+    .section-tag { display: none; }
+
+    .roles { gap: 12px; }
+    .role-card { border-radius: 14px; }
+    .role-head {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 16px 16px 12px;
+    }
+    .role-title { font-size: 15.5px; }
+    .role-meta { text-align: left; }
+    .role-body,
+    .role-body.split {
+      display: block;
+      padding: 14px 16px 16px;
+    }
+    .mission {
+      font-size: 12.5px;
+      margin-bottom: 12px;
+    }
+    .impacts { gap: 7px; }
+    .impacts li {
+      grid-template-columns: 14px 1fr;
+      gap: 8px;
+      font-size: 12.5px;
+    }
+    .impacts li::before {
+      width: 4px;
+      height: 4px;
+      margin-left: 4px;
+    }
+
+    .phase {
+      margin-top: 14px;
+      padding: 12px 12px 11px 14px;
+    }
+    .phase-head {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .phase-meta { margin-left: 0; }
+
+    .role-side {
+      border-left: none;
+      border-top: 1px solid var(--border);
+      padding-left: 0;
+      padding-top: 14px;
+      margin-top: 14px;
+      gap: 12px;
+    }
+    .stack-chips { gap: 6px; }
+    .chip { font-size: 10.5px; padding: 5px 7px; }
+
+    .skills-grid,
+    .inits,
+    .twocol {
+      grid-template-columns: 1fr;
+    }
+    .skill-card { padding: 13px 14px; }
+    .init { padding: 16px 16px 15px; }
+    .init-head {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .init-tag { white-space: normal; }
+    .init-objective { font-size: 12.5px; }
+    .init-points li { font-size: 12px; }
+
+    .list-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 13px 15px;
+    }
+    .list-row-meta { text-align: left; }
+
+    .footer {
+      padding: 18px 20px 22px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .footer .left,
+    .footer .right {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+  }
+
+  @media screen and (min-width: 641px) and (max-width: 1080px) {
+    .device-indicator { display: inline-flex; }
+    .page-wrap { padding: 22px 22px 60px; }
     .hero-grid { grid-template-columns: 1fr; gap: 28px; }
     .meta { grid-template-columns: repeat(2, 1fr); }
     .meta-cell { border-bottom: 1px solid var(--border); }
@@ -600,6 +1104,7 @@
       <span class="crumb-dot"></span>
       profile
     </span>
+    <span class="device-indicator" id="deviceLabel">Desktop</span>
     <div class="chrome-actions">
       <button class="btn" id="themeBtn" aria-label="Toggle dark mode">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -659,7 +1164,7 @@
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           Email
         </div>
-        <div class="meta-value mono"><a href="/cdn-cgi/l/email-protection#2d46454c4148494c41434840485f6d4a404c4441034e4240"><span class="__cf_email__" data-cfemail="6f04070e030a0b0e03010a020a1d2f08020e0603410c0002">[email&#160;protected]</span></a></div>
+        <div class="meta-value mono"><a href="mailto:khaledalnemer@gmail.com">khaledalnemer@gmail.com</a></div>
       </div>
       <div class="meta-cell">
         <div class="meta-label">
@@ -1022,25 +1527,55 @@
 </div>
 </main>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   (function() {
+    var root = document.documentElement;
     var btn = document.getElementById('themeBtn');
     var lbl = document.getElementById('themeLbl');
-    var saved = localStorage.getItem('theme');
-    if (saved === 'dark') { document.documentElement.setAttribute('data-theme','dark'); lbl.textContent = 'Light'; }
-    btn.addEventListener('click', function() {
-      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      if (isDark) {
-        document.documentElement.removeAttribute('data-theme');
-        lbl.textContent = 'Dark';
-        localStorage.setItem('theme','light');
+    var deviceLabel = document.getElementById('deviceLabel');
+
+    function applyDeviceMode() {
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      root.classList.remove('device-mobile', 'device-tablet', 'device-desktop');
+
+      if (width <= 640) {
+        root.classList.add('device-mobile');
+        if (deviceLabel) deviceLabel.textContent = 'Mobile';
+      } else if (width <= 1080) {
+        root.classList.add('device-tablet');
+        if (deviceLabel) deviceLabel.textContent = 'Tablet';
       } else {
-        document.documentElement.setAttribute('data-theme','dark');
-        lbl.textContent = 'Light';
-        localStorage.setItem('theme','dark');
+        root.classList.add('device-desktop');
+        if (deviceLabel) deviceLabel.textContent = 'Desktop';
       }
-    });
+    }
+
+    applyDeviceMode();
+    window.addEventListener('resize', applyDeviceMode, { passive: true });
+    window.addEventListener('orientationchange', applyDeviceMode, { passive: true });
+
+    var saved = localStorage.getItem('theme');
+    if (saved === 'dark') {
+      root.setAttribute('data-theme','dark');
+      if (lbl) lbl.textContent = 'Light';
+    }
+
+    if (btn) {
+      btn.addEventListener('click', function() {
+        var isDark = root.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+          root.removeAttribute('data-theme');
+          if (lbl) lbl.textContent = 'Dark';
+          localStorage.setItem('theme','light');
+        } else {
+          root.setAttribute('data-theme','dark');
+          if (lbl) lbl.textContent = 'Light';
+          localStorage.setItem('theme','dark');
+        }
+      });
+    }
   })();
 </script>
 </body>
 </html>
+
