@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Khaled Alnemer — National Data &amp; Analytics Leader</title>
+  <meta name="description" content="Khaled Alnemer — National Data & Analytics Leader. Building governed data ecosystems, KPI frameworks, and executive decision intelligence." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-size='70' font-family='system-ui'>K</text></svg>" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    // Apply theme before paint to avoid flash
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    })();
+
+    // Tailwind shadcn-aligned theme tokens
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        container: { center: true, padding: '1rem' },
+        extend: {
+          colors: {
+            border: 'hsl(var(--border))',
+            input: 'hsl(var(--input))',
+            ring: 'hsl(var(--ring))',
+            background: 'hsl(var(--background))',
+            foreground: 'hsl(var(--foreground))',
+            primary: {
+              DEFAULT: 'hsl(var(--primary))',
+              foreground: 'hsl(var(--primary-foreground))',
+            },
+            secondary: {
+              DEFAULT: 'hsl(var(--secondary))',
+              foreground: 'hsl(var(--secondary-foreground))',
+            },
+            muted: {
+              DEFAULT: 'hsl(var(--muted))',
+              foreground: 'hsl(var(--muted-foreground))',
+            },
+            accent: {
+              DEFAULT: 'hsl(var(--accent))',
+              foreground: 'hsl(var(--accent-foreground))',
+            },
+            card: {
+              DEFAULT: 'hsl(var(--card))',
+              foreground: 'hsl(var(--card-foreground))',
+            },
+          },
+          borderRadius: {
+            lg: 'var(--radius)',
+            md: 'calc(var(--radius) - 2px)',
+            sm: 'calc(var(--radius) - 4px)',
+          },
+          fontFamily: {
+            sans: ['Inter', 'IBM Plex Sans Arabic', 'system-ui', 'sans-serif'],
+            arabic: ['"IBM Plex Sans Arabic"', 'Inter', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 240 10% 3.9%;
+      --card: 0 0% 100%;
+      --card-foreground: 240 10% 3.9%;
+      --popover: 0 0% 100%;
+      --popover-foreground: 240 10% 3.9%;
+      --primary: 240 5.9% 10%;
+      --primary-foreground: 0 0% 98%;
+      --secondary: 240 4.8% 95.9%;
+      --secondary-foreground: 240 5.9% 10%;
+      --muted: 240 4.8% 95.9%;
+      --muted-foreground: 240 3.8% 46.1%;
+      --accent: 240 4.8% 95.9%;
+      --accent-foreground: 240 5.9% 10%;
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 0 0% 98%;
+      --border: 240 5.9% 90%;
+      --input: 240 5.9% 90%;
+      --ring: 240 5.9% 10%;
+      --radius: 0.75rem;
+    }
+    .dark {
+      --background: 240 10% 3.9%;
+      --foreground: 0 0% 98%;
+      --card: 240 10% 3.9%;
+      --card-foreground: 0 0% 98%;
+      --popover: 240 10% 3.9%;
+      --popover-foreground: 0 0% 98%;
+      --primary: 0 0% 98%;
+      --primary-foreground: 240 5.9% 10%;
+      --secondary: 240 3.7% 15.9%;
+      --secondary-foreground: 0 0% 98%;
+      --muted: 240 3.7% 15.9%;
+      --muted-foreground: 240 5% 64.9%;
+      --accent: 240 3.7% 15.9%;
+      --accent-foreground: 0 0% 98%;
+      --destructive: 0 62.8% 30.6%;
+      --destructive-foreground: 0 0% 98%;
+      --border: 240 3.7% 15.9%;
+      --input: 240 3.7% 15.9%;
+      --ring: 240 4.9% 83.9%;
+    }
+
+    * { border-color: hsl(var(--border)); }
+    html { font-feature-settings: "rlig" 1, "calt" 1; }
+    body {
+      background: hsl(var(--background));
+      color: hsl(var(--foreground));
+      font-family: 'Inter', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    html[lang="ar"] body, :lang(ar) {
+      font-family: 'IBM Plex Sans Arabic', 'Inter', system-ui, sans-serif;
+    }
+
+    /* subtle background grid */
+    .bg-grid {
+      background-image:
+        radial-gradient(hsl(var(--border) / 0.6) 1px, transparent 1px);
+      background-size: 24px 24px;
+      mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, black 40%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, black 40%, transparent 80%);
+    }
+
+    /* timeline dot */
+    .timeline-item { position: relative; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      inset-inline-start: -1.625rem;
+      top: 0.6rem;
+      width: 0.625rem;
+      height: 0.625rem;
+      border-radius: 9999px;
+      background: hsl(var(--primary));
+      box-shadow: 0 0 0 4px hsl(var(--background));
+    }
+
+    /* scrollbar polish */
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-thumb {
+      background: hsl(var(--muted-foreground) / 0.3);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground) / 0.5); }
+
+    /* nav backdrop blur */
+    .nav-blur {
+      backdrop-filter: saturate(180%) blur(10px);
+      -webkit-backdrop-filter: saturate(180%) blur(10px);
+      background: hsl(var(--background) / 0.75);
+    }
+
+    /* fade-in on load */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: none; }
+    }
+    .fade-up { animation: fadeUp 0.6s ease-out both; }
+
+    /* ============================================================
+       RESPONSIVE / MOBILE TWEAKS
+       ============================================================ */
+
+    /* Mobile menu panel */
+    #mobile-menu {
+      display: none;
+      border-top: 1px solid hsl(var(--border));
+      background: hsl(var(--background) / 0.95);
+      backdrop-filter: saturate(180%) blur(10px);
+      -webkit-backdrop-filter: saturate(180%) blur(10px);
+    }
+    #mobile-menu.open { display: block; }
+    #mobile-menu a {
+      display: block;
+      padding: 0.75rem 1rem;
+      font-size: 0.9375rem;
+      color: hsl(var(--foreground));
+      border-radius: calc(var(--radius) - 4px);
+      transition: background-color 0.15s ease;
+    }
+    #mobile-menu a:hover,
+    #mobile-menu a:active {
+      background: hsl(var(--accent));
+    }
+
+    /* hamburger -> X morph */
+    #mobile-menu-btn[aria-expanded="true"] .icon-open  { display: none; }
+    #mobile-menu-btn[aria-expanded="false"] .icon-close { display: none; }
+
+    /* Small phones (<= 640px) */
+    @media (max-width: 640px) {
+      h1 { font-size: 2.25rem !important; line-height: 1.1; letter-spacing: -0.02em; }
+      h2 { font-size: 1.5rem !important; }
+      .timeline-item::before { inset-inline-start: -1.4rem; top: 0.55rem; }
+      /* tighten section padding on phones */
+      section { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+      /* full-width stacked buttons in hero */
+      .hero-cta { width: 100%; flex-direction: column; align-items: stretch; }
+      .hero-cta > a { width: 100%; justify-content: center; }
+      /* collapse contact meta to a column */
+      .hero-meta { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      /* improve tap targets */
+      a, button { min-height: 40px; }
+    }
+
+    /* Tablet (641px – 1024px): keep nav links but tighten container */
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .container { max-width: 100% !important; }
+    }
+
+    /* Large screens: cap line length for readability */
+    @media (min-width: 1280px) {
+      main.container { max-width: 64rem; }
+    }
+
+    /* Touch devices: disable hover-only effects that linger after tap */
+    @media (hover: none) {
+      .hover\:shadow:hover { box-shadow: none; }
+    }
+
+    /* Respect users who prefer reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto !important; }
+      .fade-up { animation: none !important; }
+    }
+
+    /* ============================================================
+       PRINT STYLES (useful when someone Ctrl+P your CV site)
+       ============================================================ */
+    @media print {
+      :root {
+        --background: 0 0% 100%;
+        --foreground: 240 10% 3.9%;
+        --card: 0 0% 100%;
+        --border: 240 5.9% 80%;
+        --muted-foreground: 240 3.8% 30%;
+      }
+      html, body { background: #fff !important; color: #000 !important; }
+      header, footer, #mobile-menu, .bg-grid,
+      #lang-toggle, #theme-toggle, #mobile-menu-btn,
+      #contact .rounded-xl > .mt-6 { display: none !important; }
+      main.container { max-width: 100% !important; padding: 0 !important; }
+      section {
+        padding: 0.75rem 0 !important;
+        page-break-inside: avoid;
+        border-top: 1px solid #ddd !important;
+      }
+      article { page-break-inside: avoid; box-shadow: none !important; border: 1px solid #ddd !important; }
+      a { color: #000 !important; text-decoration: none !important; }
+      .shadow, .shadow-sm, .hover\:shadow { box-shadow: none !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen antialiased">
+
+  <!-- Decorative background -->
+  <div class="pointer-events-none fixed inset-x-0 top-0 -z-10 h-[600px] bg-grid"></div>
+
+  <!-- ============== NAVBAR ============== -->
+  <header class="sticky top-0 z-40 w-full border-b border-border/60 nav-blur">
+    <div class="container mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
+      <a href="#top" class="flex items-center gap-2 font-semibold tracking-tight">
+        <span class="grid h-7 w-7 place-items-center rounded-md bg-primary text-primary-foreground text-sm font-bold">K</span>
+        <span data-i18n="brand">Khaled Alnemer</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-1 text-sm">
+        <a href="#about"     class="px-3 py-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent" data-i18n="nav.about">About</a>
+        <a href="#experience" class="px-3 py-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent" data-i18n="nav.experience">Experience</a>
+        <a href="#projects"  class="px-3 py-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent" data-i18n="nav.projects">Projects</a>
+        <a href="#skills"    class="px-3 py-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent" data-i18n="nav.skills">Skills</a>
+        <a href="#contact"   class="px-3 py-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent" data-i18n="nav.contact">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-1.5">
+        <button id="lang-toggle" class="inline-flex h-9 items-center justify-center rounded-md border border-border bg-background px-3 text-xs font-medium hover:bg-accent transition-colors" aria-label="Toggle language">
+          <span id="lang-label">العربية</span>
+        </button>
+        <button id="theme-toggle" class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background hover:bg-accent transition-colors" aria-label="Toggle theme">
+          <i data-lucide="sun" class="h-4 w-4 hidden dark:inline-block"></i>
+          <i data-lucide="moon" class="h-4 w-4 inline-block dark:hidden"></i>
+        </button>
+        <button id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu"
+                class="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background hover:bg-accent transition-colors">
+          <i data-lucide="menu" class="icon-open h-4 w-4"></i>
+          <i data-lucide="x" class="icon-close h-4 w-4"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu (md:hidden via CSS rule above) -->
+    <div id="mobile-menu" class="md:hidden">
+      <nav class="container mx-auto max-w-5xl px-4 py-2 flex flex-col gap-1">
+        <a href="#about"      data-i18n="nav.about">About</a>
+        <a href="#experience" data-i18n="nav.experience">Experience</a>
+        <a href="#projects"   data-i18n="nav.projects">Projects</a>
+        <a href="#skills"     data-i18n="nav.skills">Skills</a>
+        <a href="#contact"    data-i18n="nav.contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="container mx-auto max-w-5xl px-4">
+
+    <!-- ============== HERO ============== -->
+    <section class="pt-16 pb-12 md:pt-24 md:pb-16 fade-up">
+      <div class="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+        </span>
+        <span data-i18n="hero.badge">Available for national data initiatives</span>
+      </div>
+
+      <h1 class="mt-5 text-4xl md:text-6xl font-bold tracking-tight" data-i18n="hero.name">Khaled Alnemer</h1>
+      <p class="mt-3 text-lg md:text-xl text-muted-foreground max-w-2xl" data-i18n="hero.title">
+        National Data &amp; Analytics Leader · Building Statistical Data Platforms
+      </p>
+
+      <p class="mt-6 max-w-2xl text-base md:text-lg text-foreground/80 leading-relaxed" data-i18n="hero.intro">
+        I lead national-scale analytics initiatives — designing governed data ecosystems, standardizing KPI frameworks, and delivering executive decision intelligence aligned with DAMA &amp; NDMO.
+      </p>
+
+      <div class="hero-cta mt-8 flex flex-wrap gap-3">
+        <a href="./resume.html"
+           class="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground shadow hover:opacity-90 transition">
+          <i data-lucide="file-text" class="h-4 w-4"></i>
+          <span data-i18n="hero.cta.cv">View Resume</span>
+        </a>
+        <a href="./Khaled_Alnemer_Resume.pdf" download
+           class="inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-2.5 text-sm font-medium hover:bg-accent transition">
+          <i data-lucide="download" class="h-4 w-4"></i>
+          <span data-i18n="hero.cta.pdf">Download PDF</span>
+        </a>
+        <a href="#contact"
+           class="inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-2.5 text-sm font-medium hover:bg-accent transition">
+          <i data-lucide="mail" class="h-4 w-4"></i>
+          <span data-i18n="hero.cta.contact">Get in touch</span>
+        </a>
+      </div>
+
+      <div class="hero-meta mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+        <span class="inline-flex items-center gap-1.5"><i data-lucide="map-pin" class="h-3.5 w-3.5"></i><span data-i18n="hero.location">Riyadh, Saudi Arabia</span></span>
+        <a href="mailto:khaledalnemer@gmail.com" class="inline-flex items-center gap-1.5 hover:text-foreground"><i data-lucide="at-sign" class="h-3.5 w-3.5"></i>khaledalnemer@gmail.com</a>
+        <a href="tel:+966548433224" class="inline-flex items-center gap-1.5 hover:text-foreground"><i data-lucide="phone" class="h-3.5 w-3.5"></i>+966 54 843 3224</a>
+        <a href="https://khaledalnemer.sa" class="inline-flex items-center gap-1.5 hover:text-foreground"><i data-lucide="globe" class="h-3.5 w-3.5"></i>khaledalnemer.sa</a>
+      </div>
+    </section>
+
+    <!-- ============== ABOUT ============== -->
+    <section id="about" class="py-12 md:py-16 border-t border-border/60">
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight" data-i18n="about.heading">About</h2>
+      <p class="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl" data-i18n="about.body">
+        Senior Business Intelligence leader with 8+ years building enterprise data warehouses, governance frameworks, and executive dashboards across the Saudi public and financial sectors. Currently leading analytics inside the Ministry of Education ecosystem, with prior leadership of the Data Office at the National eLearning Center, and senior BI roles at Alinma Bank and Albilad Bank.
+      </p>
+    </section>
+
+    <!-- ============== EXPERIENCE ============== -->
+    <section id="experience" class="py-12 md:py-16 border-t border-border/60">
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight" data-i18n="experience.heading">Experience</h2>
+
+      <ol class="mt-8 space-y-6 ms-6 border-s border-border/80">
+        <!-- card template -->
+        <li class="timeline-item ps-6">
+          <article class="rounded-lg border border-border bg-card p-5 md:p-6 shadow-sm hover:shadow transition">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 class="font-semibold text-base md:text-lg" data-i18n="exp.tatweer.role">Senior Business Intelligence — Team Lead</h3>
+              <span class="font-mono text-xs text-muted-foreground" data-i18n="exp.tatweer.date">Jun 2024 – Present</span>
+            </div>
+            <p class="text-sm text-muted-foreground mt-1" data-i18n="exp.tatweer.company">Tatweer Educational Technologies · Riyadh</p>
+            <p class="mt-3 text-sm leading-relaxed" data-i18n="exp.tatweer.summary">
+              Leading national-scale analytics initiatives within the Ministry of Education ecosystem — building governed data ecosystems and enabling decision intelligence.
+            </p>
+            <ul class="mt-3 space-y-1.5 text-sm list-disc ms-5 marker:text-muted-foreground/60">
+              <li data-i18n="exp.tatweer.b1">Designed unified analytical layers aligned with national KPI frameworks.</li>
+              <li data-i18n="exp.tatweer.b2">Enabled cross-system data integration to support executive reporting.</li>
+              <li data-i18n="exp.tatweer.b3">Implemented governed data ingestion using Master Data Services (MDS).</li>
+              <li data-i18n="exp.tatweer.b4">Delivered executive dashboards supporting strategic and operational decisions.</li>
+            </ul>
+          </article>
+        </li>
+
+        <li class="timeline-item ps-6">
+          <article class="rounded-lg border border-border bg-card p-5 md:p-6 shadow-sm hover:shadow transition">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 class="font-semibold text-base md:text-lg" data-i18n="exp.nelc.role">Senior BI Specialist — Team Lead</h3>
+              <span class="font-mono text-xs text-muted-foreground" data-i18n="exp.nelc.date">Nov 2021 – Jun 2024</span>
+            </div>
+            <p class="text-sm text-muted-foreground mt-1" data-i18n="exp.nelc.company">National eLearning Center · Riyadh</p>
+            <p class="mt-3 text-sm leading-relaxed" data-i18n="exp.nelc.summary">
+              Established the Data Office and led the development of institutional analytics capabilities.
+            </p>
+            <ul class="mt-3 space-y-1.5 text-sm list-disc ms-5 marker:text-muted-foreground/60">
+              <li data-i18n="exp.nelc.b1">Built structured data models supporting performance monitoring.</li>
+              <li data-i18n="exp.nelc.b2">Introduced governance frameworks improving data quality and ownership.</li>
+              <li data-i18n="exp.nelc.b3">Delivered analytics aligned with national digital transformation goals.</li>
+              <li data-i18n="exp.nelc.b4">Enabled leadership visibility through advanced reporting systems.</li>
+            </ul>
+          </article>
+        </li>
+
+        <li class="timeline-item ps-6">
+          <article class="rounded-lg border border-border bg-card p-5 md:p-6 shadow-sm hover:shadow transition">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 class="font-semibold text-base md:text-lg" data-i18n="exp.alinma.role">Senior Business Intelligence Specialist</h3>
+              <span class="font-mono text-xs text-muted-foreground" data-i18n="exp.alinma.date">Apr 2020 – Nov 2021</span>
+            </div>
+            <p class="text-sm text-muted-foreground mt-1" data-i18n="exp.alinma.company">Alinma Bank · Riyadh</p>
+            <ul class="mt-3 space-y-1.5 text-sm list-disc ms-5 marker:text-muted-foreground/60">
+              <li data-i18n="exp.alinma.b1">Contributed to enterprise Data Warehouse architecture development.</li>
+              <li data-i18n="exp.alinma.b2">Improved reporting efficiency across business units.</li>
+              <li data-i18n="exp.alinma.b3">Delivered insights supporting financial performance and growth.</li>
+            </ul>
+          </article>
+        </li>
+
+        <li class="timeline-item ps-6">
+          <article class="rounded-lg border border-border bg-card p-5 md:p-6 shadow-sm hover:shadow transition">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 class="font-semibold text-base md:text-lg" data-i18n="exp.albilad.role">Business Intelligence Officer</h3>
+              <span class="font-mono text-xs text-muted-foreground" data-i18n="exp.albilad.date">Apr 2017 – Apr 2020</span>
+            </div>
+            <p class="text-sm text-muted-foreground mt-1" data-i18n="exp.albilad.company">Albilad Bank · Riyadh</p>
+            <ul class="mt-3 space-y-1.5 text-sm list-disc ms-5 marker:text-muted-foreground/60">
+              <li data-i18n="exp.albilad.b1">Developed SAS-based dashboards for sales and financing analytics.</li>
+              <li data-i18n="exp.albilad.b2">Implemented Row-Level Security (RLS) for data governance.</li>
+              <li data-i18n="exp.albilad.b3">Supported real estate financing performance analysis.</li>
+            </ul>
+          </article>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ============== PROJECTS ============== -->
+    <section id="projects" class="py-12 md:py-16 border-t border-border/60">
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight" data-i18n="projects.heading">Selected Projects</h2>
+      <p class="mt-2 text-sm text-muted-foreground" data-i18n="projects.subheading">Concept work, frameworks, and delivered platforms.</p>
+
+      <div class="mt-8 grid gap-4 md:grid-cols-2">
+        <article class="rounded-lg border border-border bg-card p-5 md:p-6 hover:shadow transition">
+          <div class="flex items-start gap-3">
+            <div class="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-secondary">
+              <i data-lucide="bar-chart-3" class="h-4 w-4"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold" data-i18n="proj.indicators.title">National Economic Indicators Platform</h3>
+              <p class="text-xs text-muted-foreground mt-0.5" data-i18n="proj.indicators.tag">Concept &amp; Prototype</p>
+            </div>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-foreground/85" data-i18n="proj.indicators.body">
+            Unified analytical platform for national-level indicators aligned with statistical standards. KPI Dictionary standardizing GDP, inflation, employment, education; executive dashboards with trend, regional comparison, and forecasting; governance models (ownership, validation, version control).
+          </p>
+        </article>
+
+        <article class="rounded-lg border border-border bg-card p-5 md:p-6 hover:shadow transition">
+          <div class="flex items-start gap-3">
+            <div class="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-secondary">
+              <i data-lucide="layers" class="h-4 w-4"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold" data-i18n="proj.layer.title">Unified Government Data Layer</h3>
+              <p class="text-xs text-muted-foreground mt-0.5" data-i18n="proj.layer.tag">Analytical Integration Model</p>
+            </div>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-foreground/85" data-i18n="proj.layer.body">
+            Centralized data layer integrating multiple government systems. Dimensional models for cross-domain analytics, integration of operational systems into a unified reporting structure, and master data governance through MDS.
+          </p>
+        </article>
+
+        <article class="rounded-lg border border-border bg-card p-5 md:p-6 hover:shadow transition">
+          <div class="flex items-start gap-3">
+            <div class="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-secondary">
+              <i data-lucide="shield-check" class="h-4 w-4"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold" data-i18n="proj.governance.title">Data Governance &amp; Quality Framework</h3>
+              <p class="text-xs text-muted-foreground mt-0.5" data-i18n="proj.governance.tag">Implementation</p>
+            </div>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-foreground/85" data-i18n="proj.governance.body">
+            Governance model enhancing data trust and reliability. Defined ownership structure (Owner / Steward), data quality rules (completeness, accuracy, timeliness), and monitoring dashboards for validation and auditing.
+          </p>
+        </article>
+
+        <article class="rounded-lg border border-border bg-card p-5 md:p-6 hover:shadow transition">
+          <div class="flex items-start gap-3">
+            <div class="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-secondary">
+              <i data-lucide="line-chart" class="h-4 w-4"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold" data-i18n="proj.exec.title">Executive Decision Intelligence Dashboards</h3>
+              <p class="text-xs text-muted-foreground mt-0.5" data-i18n="proj.exec.tag">Leadership Enablement</p>
+            </div>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-foreground/85" data-i18n="proj.exec.body">
+            Executive-level dashboards supporting strategic decision-making — KPI-driven performance tracking, drill-down analysis from national to operational level, and storytelling techniques for executive consumption.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============== SKILLS ============== -->
+    <section id="skills" class="py-12 md:py-16 border-t border-border/60">
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight" data-i18n="skills.heading">Skills &amp; Expertise</h2>
+
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div>
+          <h3 class="text-sm font-semibold text-muted-foreground uppercase tracking-wider" data-i18n="skills.core">Core domains</h3>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="inline-flex items-center rounded-md border border-border bg-secondary/60 px-2.5 py-1 text-xs font-medium" data-i18n="skill.platforms">National Data Platforms &amp; Statistical Systems</span>
+            <span class="inline-flex items-center rounded-md border border-border bg-secondary/60 px-2.5 py-1 text-xs font-medium" data-i18n="skill.governance">Data Governance (DAMA / NDMO)</span>
+            <span class="inline-flex items-center rounded-md border border-border bg-secondary/60 px-2.5 py-1 text-xs font-medium" data-i18n="skill.kpi">KPI Design &amp; Indicator Standardization</span>
+            <span class="inline-flex items-center rounded-md border border-border bg-secondary/60 px-2.5 py-1 text-xs font-medium" data-i18n="skill.integration">Data Integration &amp; Interoperability</span>
+            <span class="inline-flex items-center rounded-md border border-border bg-secondary/60 px-2.5 py-1 text-xs font-medium" data-i18n="skill.dwh">Data Warehousing &amp; Analytical Layers</span>
+            <span class="inline-flex items-center rounded-md border border-border bg-secondary/60 px-2.5 py-1 text-xs font-medium" data-i18n="skill.dashboards">Executive Dashboards &amp; Decision Intelligence</span>
+          </div>
+        </div>
+
+        <div class="grid gap-4">
+          <div class="rounded-lg border border-border bg-card p-5">
+            <h3 class="text-sm font-semibold text-muted-foreground uppercase tracking-wider" data-i18n="certs.heading">Certifications</h3>
+            <ul class="mt-3 space-y-2.5 text-sm">
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="badge-check" class="h-4 w-4 mt-0.5 text-foreground/70"></i>
+                <div>
+                  <div class="font-medium" data-i18n="cert.cdmp">Certified Data Management Professional (CDMP)</div>
+                  <div class="text-xs text-muted-foreground">DAMA International</div>
+                </div>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="badge-check" class="h-4 w-4 mt-0.5 text-foreground/70"></i>
+                <div>
+                  <div class="font-medium" data-i18n="cert.roi">ROI Methodology Master Class</div>
+                  <div class="text-xs text-muted-foreground">ROI Institute</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="rounded-lg border border-border bg-card p-5">
+            <h3 class="text-sm font-semibold text-muted-foreground uppercase tracking-wider" data-i18n="education.heading">Education</h3>
+            <div class="mt-3 text-sm">
+              <div class="font-medium" data-i18n="edu.degree">Bachelor of Information Systems (Computer Science)</div>
+              <div class="text-muted-foreground" data-i18n="edu.school">King Khalid University · Abha · 2011 – 2016</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== CONTACT ============== -->
+    <section id="contact" class="py-12 md:py-20 border-t border-border/60">
+      <div class="rounded-xl border border-border bg-card p-6 md:p-10 text-center">
+        <h2 class="text-2xl md:text-3xl font-semibold tracking-tight" data-i18n="contact.heading">Let's build something national-scale.</h2>
+        <p class="mt-3 text-muted-foreground max-w-xl mx-auto" data-i18n="contact.body">
+          Open to leadership conversations around statistical platforms, data governance, and executive analytics.
+        </p>
+        <div class="mt-6 flex flex-wrap justify-center gap-3">
+          <a href="mailto:khaledalnemer@gmail.com"
+             class="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:opacity-90 transition">
+            <i data-lucide="mail" class="h-4 w-4"></i>
+            <span data-i18n="contact.email">Email me</span>
+          </a>
+          <a href="tel:+966548433224"
+             class="inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-2.5 text-sm font-medium hover:bg-accent transition">
+            <i data-lucide="phone" class="h-4 w-4"></i>
+            <span data-i18n="contact.call">Call</span>
+          </a>
+          <a href="./Khaled_Alnemer_Resume.pdf" download
+             class="inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-2.5 text-sm font-medium hover:bg-accent transition">
+            <i data-lucide="download" class="h-4 w-4"></i>
+            <span data-i18n="contact.cv">Download CV</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============== FOOTER ============== -->
+  <footer class="border-t border-border/60 mt-8">
+    <div class="container mx-auto max-w-5xl px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
+      <div>© <span id="year"></span> Khaled Alnemer. <span data-i18n="footer.rights">All rights reserved.</span></div>
+      <div class="flex items-center gap-3">
+        <a href="https://khaledalnemer.sa" class="hover:text-foreground">khaledalnemer.sa</a>
+        <span aria-hidden="true">·</span>
+        <a href="mailto:khaledalnemer@gmail.com" class="hover:text-foreground">khaledalnemer@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ============ i18n dictionary ============
+    const i18n = {
+      en: {
+        'brand': 'Khaled Alnemer',
+        'nav.about': 'About',
+        'nav.experience': 'Experience',
+        'nav.projects': 'Projects',
+        'nav.skills': 'Skills',
+        'nav.contact': 'Contact',
+
+        'hero.badge': 'Available for national data initiatives',
+        'hero.name': 'Khaled Alnemer',
+        'hero.title': 'National Data & Analytics Leader · Building Statistical Data Platforms',
+        'hero.intro': 'I lead national-scale analytics initiatives — designing governed data ecosystems, standardizing KPI frameworks, and delivering executive decision intelligence aligned with DAMA & NDMO.',
+        'hero.cta.cv': 'View Resume',
+        'hero.cta.pdf': 'Download PDF',
+        'hero.cta.contact': 'Get in touch',
+        'hero.location': 'Riyadh, Saudi Arabia',
+
+        'about.heading': 'About',
+        'about.body': 'Senior Business Intelligence leader with 8+ years building enterprise data warehouses, governance frameworks, and executive dashboards across the Saudi public and financial sectors. Currently leading analytics inside the Ministry of Education ecosystem, with prior leadership of the Data Office at the National eLearning Center, and senior BI roles at Alinma Bank and Albilad Bank.',
+
+        'experience.heading': 'Experience',
+
+        'exp.tatweer.role': 'Senior Business Intelligence — Team Lead',
+        'exp.tatweer.company': 'Tatweer Educational Technologies · Riyadh',
+        'exp.tatweer.date': 'Jun 2024 – Present',
+        'exp.tatweer.summary': 'Leading national-scale analytics initiatives within the Ministry of Education ecosystem — building governed data ecosystems and enabling decision intelligence.',
+        'exp.tatweer.b1': 'Designed unified analytical layers aligned with national KPI frameworks.',
+        'exp.tatweer.b2': 'Enabled cross-system data integration to support executive reporting.',
+        'exp.tatweer.b3': 'Implemented governed data ingestion using Master Data Services (MDS).',
+        'exp.tatweer.b4': 'Delivered executive dashboards supporting strategic and operational decisions.',
+
+        'exp.nelc.role': 'Senior BI Specialist — Team Lead',
+        'exp.nelc.company': 'National eLearning Center · Riyadh',
+        'exp.nelc.date': 'Nov 2021 – Jun 2024',
+        'exp.nelc.summary': 'Established the Data Office and led the development of institutional analytics capabilities.',
+        'exp.nelc.b1': 'Built structured data models supporting performance monitoring.',
+        'exp.nelc.b2': 'Introduced governance frameworks improving data quality and ownership.',
+        'exp.nelc.b3': 'Delivered analytics aligned with national digital transformation goals.',
+        'exp.nelc.b4': 'Enabled leadership visibility through advanced reporting systems.',
+
+        'exp.alinma.role': 'Senior Business Intelligence Specialist',
+        'exp.alinma.company': 'Alinma Bank · Riyadh',
+        'exp.alinma.date': 'Apr 2020 – Nov 2021',
+        'exp.alinma.b1': 'Contributed to enterprise Data Warehouse architecture development.',
+        'exp.alinma.b2': 'Improved reporting efficiency across business units.',
+        'exp.alinma.b3': 'Delivered insights supporting financial performance and growth.',
+
+        'exp.albilad.role': 'Business Intelligence Officer',
+        'exp.albilad.company': 'Albilad Bank · Riyadh',
+        'exp.albilad.date': 'Apr 2017 – Apr 2020',
+        'exp.albilad.b1': 'Developed SAS-based dashboards for sales and financing analytics.',
+        'exp.albilad.b2': 'Implemented Row-Level Security (RLS) for data governance.',
+        'exp.albilad.b3': 'Supported real estate financing performance analysis.',
+
+        'projects.heading': 'Selected Projects',
+        'projects.subheading': 'Concept work, frameworks, and delivered platforms.',
+
+        'proj.indicators.title': 'National Economic Indicators Platform',
+        'proj.indicators.tag': 'Concept & Prototype',
+        'proj.indicators.body': 'Unified analytical platform for national-level indicators aligned with statistical standards. KPI Dictionary standardizing GDP, inflation, employment, education; executive dashboards with trend, regional comparison, and forecasting; governance models (ownership, validation, version control).',
+
+        'proj.layer.title': 'Unified Government Data Layer',
+        'proj.layer.tag': 'Analytical Integration Model',
+        'proj.layer.body': 'Centralized data layer integrating multiple government systems. Dimensional models for cross-domain analytics, integration of operational systems into a unified reporting structure, and master data governance through MDS.',
+
+        'proj.governance.title': 'Data Governance & Quality Framework',
+        'proj.governance.tag': 'Implementation',
+        'proj.governance.body': 'Governance model enhancing data trust and reliability. Defined ownership structure (Owner / Steward), data quality rules (completeness, accuracy, timeliness), and monitoring dashboards for validation and auditing.',
+
+        'proj.exec.title': 'Executive Decision Intelligence Dashboards',
+        'proj.exec.tag': 'Leadership Enablement',
+        'proj.exec.body': 'Executive-level dashboards supporting strategic decision-making — KPI-driven performance tracking, drill-down analysis from national to operational level, and storytelling techniques for executive consumption.',
+
+        'skills.heading': 'Skills & Expertise',
+        'skills.core': 'Core domains',
+        'skill.platforms': 'National Data Platforms & Statistical Systems',
+        'skill.governance': 'Data Governance (DAMA / NDMO)',
+        'skill.kpi': 'KPI Design & Indicator Standardization',
+        'skill.integration': 'Data Integration & Interoperability',
+        'skill.dwh': 'Data Warehousing & Analytical Layers',
+        'skill.dashboards': 'Executive Dashboards & Decision Intelligence',
+
+        'certs.heading': 'Certifications',
+        'cert.cdmp': 'Certified Data Management Professional (CDMP)',
+        'cert.roi': 'ROI Methodology Master Class',
+
+        'education.heading': 'Education',
+        'edu.degree': 'Bachelor of Information Systems (Computer Science)',
+        'edu.school': 'King Khalid University · Abha · 2011 – 2016',
+
+        'contact.heading': "Let's build something national-scale.",
+        'contact.body': 'Open to leadership conversations around statistical platforms, data governance, and executive analytics.',
+        'contact.email': 'Email me',
+        'contact.call': 'Call',
+        'contact.cv': 'Download CV',
+
+        'footer.rights': 'All rights reserved.',
+      },
+
+      ar: {
+        'brand': 'خالد النمر',
+        'nav.about': 'نبذة',
+        'nav.experience': 'الخبرات',
+        'nav.projects': 'المشاريع',
+        'nav.skills': 'المهارات',
+        'nav.contact': 'تواصل',
+
+        'hero.badge': 'متاح لمبادرات البيانات الوطنية',
+        'hero.name': 'خالد النمر',
+        'hero.title': 'قائد البيانات والتحليلات الوطنية · بناء منصات البيانات الإحصائية',
+        'hero.intro': 'أقود مبادرات تحليلية على المستوى الوطني — تصميم منظومات بيانات محوكَمة، توحيد أُطر مؤشرات الأداء، وتمكين ذكاء القرار التنفيذي بما يتوافق مع DAMA و NDMO.',
+        'hero.cta.cv': 'عرض السيرة الذاتية',
+        'hero.cta.pdf': 'تحميل PDF',
+        'hero.cta.contact': 'تواصل معي',
+        'hero.location': 'الرياض، المملكة العربية السعودية',
+
+        'about.heading': 'نبذة',
+        'about.body': 'قائد ذكاء أعمال (Senior BI) بخبرة تتجاوز ٨ سنوات في بناء مستودعات البيانات المؤسسية، أُطر الحوكمة، ولوحات القرار التنفيذية في القطاعين الحكومي والمالي السعودي. أقود حالياً تحليلات داخل منظومة وزارة التعليم، وقد قدتُ سابقاً مكتب البيانات في المركز الوطني للتعلم الإلكتروني، وشغلتُ مناصب أساسية في ذكاء الأعمال لدى مصرف الإنماء وبنك البلاد.',
+
+        'experience.heading': 'الخبرات المهنية',
+
+        'exp.tatweer.role': 'أخصائي ذكاء أعمال أول — قائد فريق',
+        'exp.tatweer.company': 'تطوير لتقنيات التعليم · الرياض',
+        'exp.tatweer.date': 'يونيو ٢٠٢٤ – حتى الآن',
+        'exp.tatweer.summary': 'قيادة مبادرات تحليلية وطنية ضمن منظومة وزارة التعليم — بناء منظومات بيانات محوكَمة وتمكين ذكاء القرار.',
+        'exp.tatweer.b1': 'تصميم طبقات تحليلية موحّدة متوافقة مع أُطر مؤشرات الأداء الوطنية.',
+        'exp.tatweer.b2': 'تمكين تكامل البيانات بين الأنظمة لدعم التقارير التنفيذية.',
+        'exp.tatweer.b3': 'تطبيق منظومة استيعاب البيانات المحوكَمة عبر Master Data Services (MDS).',
+        'exp.tatweer.b4': 'تسليم لوحات تنفيذية تدعم القرارات الاستراتيجية والتشغيلية.',
+
+        'exp.nelc.role': 'أخصائي ذكاء أعمال أول — قائد فريق',
+        'exp.nelc.company': 'المركز الوطني للتعلم الإلكتروني · الرياض',
+        'exp.nelc.date': 'نوفمبر ٢٠٢١ – يونيو ٢٠٢٤',
+        'exp.nelc.summary': 'تأسيس مكتب البيانات وقيادة بناء قدرات التحليل المؤسسي.',
+        'exp.nelc.b1': 'بناء نماذج بيانات منظَّمة تدعم متابعة الأداء.',
+        'exp.nelc.b2': 'تقديم أُطر حوكمة لتعزيز جودة البيانات وملكيتها.',
+        'exp.nelc.b3': 'تسليم حلول تحليلية متوافقة مع أهداف التحول الرقمي الوطني.',
+        'exp.nelc.b4': 'تمكين رؤية القيادة عبر أنظمة تقارير متقدمة.',
+
+        'exp.alinma.role': 'أخصائي ذكاء أعمال أول',
+        'exp.alinma.company': 'مصرف الإنماء · الرياض',
+        'exp.alinma.date': 'أبريل ٢٠٢٠ – نوفمبر ٢٠٢١',
+        'exp.alinma.b1': 'المساهمة في تطوير معمارية مستودع البيانات المؤسسي.',
+        'exp.alinma.b2': 'تحسين كفاءة التقارير عبر وحدات الأعمال.',
+        'exp.alinma.b3': 'تسليم رؤى تحليلية تدعم الأداء المالي والنمو.',
+
+        'exp.albilad.role': 'مسؤول ذكاء أعمال',
+        'exp.albilad.company': 'بنك البلاد · الرياض',
+        'exp.albilad.date': 'أبريل ٢٠١٧ – أبريل ٢٠٢٠',
+        'exp.albilad.b1': 'تطوير لوحات قائمة على SAS لتحليلات المبيعات والتمويل.',
+        'exp.albilad.b2': 'تطبيق أمان مستوى الصف (RLS) لحوكمة البيانات.',
+        'exp.albilad.b3': 'دعم تحليل أداء التمويل العقاري.',
+
+        'projects.heading': 'مشاريع مختارة',
+        'projects.subheading': 'أعمال مفاهيمية، أُطر مرجعية، ومنصات تم تسليمها.',
+
+        'proj.indicators.title': 'منصة المؤشرات الاقتصادية الوطنية',
+        'proj.indicators.tag': 'مفهوم ونموذج أوّلي',
+        'proj.indicators.body': 'منصة تحليلية موحّدة لمؤشرات على المستوى الوطني متوافقة مع المعايير الإحصائية. قاموس مؤشرات يوحّد تعريفات الناتج المحلي، التضخم، التوظيف، والتعليم؛ لوحات تنفيذية بتحليل الاتجاهات والمقارنات الإقليمية وسيناريوهات التنبؤ؛ نماذج حوكمة (ملكية، مسارات تحقق، إدارة إصدارات).',
+
+        'proj.layer.title': 'الطبقة الموحّدة للبيانات الحكومية',
+        'proj.layer.tag': 'نموذج تكامل تحليلي',
+        'proj.layer.body': 'طبقة بيانات مركزية تدمج أنظمة حكومية متعددة. نماذج أبعادية تُمكّن التحليل عبر المجالات، تكامل الأنظمة التشغيلية في بنية تقارير موحّدة، وحوكمة البيانات الرئيسة عبر MDS.',
+
+        'proj.governance.title': 'إطار حوكمة البيانات والجودة',
+        'proj.governance.tag': 'تطبيق',
+        'proj.governance.body': 'نموذج حوكمة يعزّز الثقة في البيانات وموثوقيتها. تحديد بنية الملكية (Owner / Steward)، قواعد جودة (اكتمال، دقة، توقيتية)، ولوحات مراقبة للتحقق والتدقيق.',
+
+        'proj.exec.title': 'لوحات ذكاء القرار التنفيذي',
+        'proj.exec.tag': 'تمكين القيادة',
+        'proj.exec.body': 'لوحات على المستوى التنفيذي تدعم اتخاذ القرار الاستراتيجي — متابعة أداء قائمة على المؤشرات، تحليل تنازلي من الوطني إلى التشغيلي، وأساليب سرد قصصي مناسبة للقيادة.',
+
+        'skills.heading': 'المهارات والخبرات',
+        'skills.core': 'المجالات الأساسية',
+        'skill.platforms': 'منصات البيانات الوطنية والأنظمة الإحصائية',
+        'skill.governance': 'حوكمة البيانات (DAMA / NDMO)',
+        'skill.kpi': 'تصميم وتوحيد مؤشرات الأداء',
+        'skill.integration': 'تكامل البيانات والقابلية البينية',
+        'skill.dwh': 'مستودعات البيانات والطبقات التحليلية',
+        'skill.dashboards': 'لوحات تنفيذية وذكاء القرار',
+
+        'certs.heading': 'الشهادات',
+        'cert.cdmp': 'محترف معتمد في إدارة البيانات (CDMP)',
+        'cert.roi': 'ماستر كلاس في منهجية العائد على الاستثمار',
+
+        'education.heading': 'التعليم',
+        'edu.degree': 'بكالوريوس نظم المعلومات (علوم الحاسب)',
+        'edu.school': 'جامعة الملك خالد · أبها · ٢٠١١ – ٢٠١٦',
+
+        'contact.heading': 'لنبنِ شيئاً على مستوى وطني.',
+        'contact.body': 'منفتح على نقاشات قيادية حول المنصات الإحصائية، حوكمة البيانات، والتحليلات التنفيذية.',
+        'contact.email': 'مراسلتي عبر البريد',
+        'contact.call': 'اتصل',
+        'contact.cv': 'تحميل السيرة الذاتية',
+
+        'footer.rights': 'جميع الحقوق محفوظة.',
+      },
+    };
+
+    // ============ language switching ============
+    const langLabel = document.getElementById('lang-label');
+    const langToggle = document.getElementById('lang-toggle');
+
+    function applyLang(lang) {
+      const dict = i18n[lang] || i18n.en;
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      document.title = lang === 'ar'
+        ? 'خالد النمر — قائد البيانات والتحليلات الوطنية'
+        : 'Khaled Alnemer — National Data & Analytics Leader';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key] !== undefined) el.textContent = dict[key];
+      });
+      // toggle button shows the OTHER language
+      langLabel.textContent = lang === 'ar' ? 'English' : 'العربية';
+      try { localStorage.setItem('lang', lang); } catch (e) {}
+    }
+
+    langToggle.addEventListener('click', () => {
+      const next = document.documentElement.lang === 'ar' ? 'en' : 'ar';
+      applyLang(next);
+    });
+
+    // ============ theme switching ============
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (e) {}
+    });
+
+    // ============ mobile menu ============
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const menuPanel = document.getElementById('mobile-menu');
+
+    function setMenu(open) {
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      menuPanel.classList.toggle('open', open);
+    }
+    menuBtn.addEventListener('click', () => {
+      setMenu(menuBtn.getAttribute('aria-expanded') !== 'true');
+    });
+    // Close when an in-page link is tapped
+    menuPanel.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', () => setMenu(false));
+    });
+    // Close if viewport grows past mobile breakpoint
+    const mq = window.matchMedia('(min-width: 768px)');
+    const onMqChange = (e) => { if (e.matches) setMenu(false); };
+    if (mq.addEventListener) mq.addEventListener('change', onMqChange);
+    else if (mq.addListener) mq.addListener(onMqChange); // Safari < 14 fallback
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setMenu(false);
+    });
+
+    // ============ initial state ============
+    let initialLang = 'en';
+    try {
+      const saved = localStorage.getItem('lang');
+      if (saved === 'ar' || saved === 'en') initialLang = saved;
+      else if ((navigator.language || '').toLowerCase().startsWith('ar')) initialLang = 'ar';
+    } catch (e) {}
+    applyLang(initialLang);
+
+    // year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // icons
+    if (window.lucide) lucide.createIcons();
+  </script>
+
+</body>
+</html>
