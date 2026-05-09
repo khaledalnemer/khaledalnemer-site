@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Khaled Alnemer — Resume</title>
+  <meta name="description" content="Khaled Alnemer — National Data & Analytics Leader. Resume / CV." />
+  <meta name="author" content="Khaled Alnemer" />
+
+  <!-- Fonts (Inter only for print fidelity; ATS uses extracted text, so font choice doesn't affect parsing) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       SHADCN-ALIGNED TOKENS (light only — ATS / print-first)
+       ============================================================ */
+    :root {
+      --background: #ffffff;
+      --foreground: #09090b;
+      --muted:      #71717a;   /* zinc-500 */
+      --muted-2:    #52525b;   /* zinc-600 */
+      --border:     #e4e4e7;   /* zinc-200 */
+      --accent:     #18181b;   /* zinc-900 — used for company names */
+      --radius:     6px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #f4f4f5; /* zinc-100 — only visible on screen, not print */
+      color: var(--foreground);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
+    }
+
+    /* ============================================================
+       A4 PAGE — 210mm × 297mm
+       Single column for maximum ATS reliability
+       ============================================================ */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 24px auto;
+      padding: 18mm 18mm 16mm;
+      background: #fff;
+      color: var(--foreground);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+
+      /* Body sizing tuned for one-page fit */
+      font-size: 10.5pt;
+      line-height: 1.45;
+    }
+
+    /* ============================================================
+       TYPOGRAPHY
+       ============================================================ */
+    h1 {
+      font-size: 26pt;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+      margin: 0 0 4px;
+    }
+    .tagline {
+      font-size: 11pt;
+      color: var(--muted-2);
+      font-weight: 500;
+      margin: 0 0 10px;
+      letter-spacing: 0;
+    }
+
+    /* Section headings — use real <h2> so ATS parses them */
+    h2 {
+      font-size: 11pt;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--foreground);
+      margin: 14px 0 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h3 {
+      font-size: 10.75pt;
+      font-weight: 600;
+      margin: 0;
+      color: var(--accent);
+    }
+
+    p { margin: 0 0 6px; }
+
+    a { color: inherit; text-decoration: none; }
+
+    ul {
+      margin: 4px 0 0;
+      padding-inline-start: 18px;
+    }
+    li { margin-bottom: 2px; }
+    li::marker { color: var(--muted); }
+
+    .muted { color: var(--muted); }
+
+    /* ============================================================
+       HEADER — name, tagline, contact strip
+       ============================================================ */
+    header.cv-head {
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 14px;
+    }
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 14px;
+      margin-top: 6px;
+      font-size: 9.75pt;
+      color: var(--muted-2);
+    }
+    .contact-row span,
+    .contact-row a { display: inline-flex; align-items: center; gap: 5px; }
+    .contact-row .sep { color: var(--border); }
+
+    /* ============================================================
+       EXPERIENCE / PROJECTS ITEMS
+       Single column — ATS-safe. Dates inline-right for visual.
+       ============================================================ */
+    .item { margin-top: 10px; page-break-inside: avoid; }
+    .item:first-of-type { margin-top: 4px; }
+
+    .item-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .item-meta {
+      font-size: 9.5pt;
+      color: var(--muted);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+    .item-sub {
+      margin-top: 1px;
+      font-size: 10pt;
+      color: var(--muted-2);
+      font-weight: 500;
+    }
+    .item-summary {
+      margin-top: 4px;
+      font-size: 10pt;
+    }
+
+    /* ============================================================
+       SKILLS — inline list (ATS reads commas perfectly)
+       ============================================================ */
+    .skills-list {
+      margin: 4px 0 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 8px;
+    }
+    .skills-list li {
+      font-size: 9.75pt;
+      padding: 2px 9px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--foreground);
+      background: #fafafa;
+    }
+
+    /* For ATS: also output the same skills as comma-separated
+       offscreen text so screen readers + parsers get a clean list. */
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ============================================================
+       TWO-COL ROW for Education + Certs (still each in plain text,
+       parser sees them as two sections sequentially)
+       ============================================================ */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    @media (max-width: 600px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       SCREEN-ONLY TOOLBAR (hidden in print)
+       ============================================================ */
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      padding: 12px;
+      background: rgba(244,244,245,0.85);
+      backdrop-filter: saturate(180%) blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .toolbar button,
+    .toolbar a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 36px;
+      padding: 0 14px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--foreground);
+      font: 500 13px 'Inter', system-ui, sans-serif;
+      cursor: pointer;
+      transition: background 120ms ease, border-color 120ms ease;
+    }
+    .toolbar button:hover,
+    .toolbar a:hover { background: #fafafa; border-color: #d4d4d8; }
+    .toolbar .primary {
+      background: #18181b;
+      color: #fff;
+      border-color: #18181b;
+    }
+    .toolbar .primary:hover { background: #27272a; border-color: #27272a; }
+
+    /* ============================================================
+       PRINT — A4 page setup, hide UI, smooth flow across pages
+       ============================================================ */
+    @page {
+      size: A4;
+      margin: 14mm 16mm;
+    }
+    @media print {
+      html, body { background: #fff !important; }
+      .toolbar { display: none !important; }
+
+      /* let the content flow naturally across pages — no forced
+         min-height so we never get a tall empty tail at page end */
+      .page {
+        margin: 0;
+        padding: 0;
+        width: auto;
+        min-height: 0;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        background: #fff;
+      }
+
+      a { color: inherit !important; }
+
+      /* Don't strand a heading at the bottom of a page */
+      h1, h2, h3 { break-after: avoid-page; page-break-after: avoid; }
+      .item-head { break-after: avoid-page; page-break-after: avoid; }
+
+      /* Allow long items to flow across pages — prevents the big
+         empty gap that appears when "break-inside: avoid" pushes a
+         whole card to the next page. */
+      .item { break-inside: auto; page-break-inside: auto; }
+
+      /* Avoid leaving 1-2 lines orphaned at top/bottom */
+      p, li { orphans: 3; widows: 3; }
+
+      /* Tighter vertical rhythm for print so more fits cleanly */
+      section { margin-top: 6px; }
+      h2 { margin: 10px 0 6px; }
+      .item { margin-top: 7px; }
+      .item-summary { margin-top: 3px; }
+      ul { margin-top: 3px; }
+      li { margin-bottom: 1px; }
+
+      /* Skills pills retain their look when "background graphics"
+         is enabled in the print dialog */
+      .skills-list li {
+        background: #fafafa !important;
+        border-color: #e4e4e7 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Screen-only toolbar -->
+  <div class="toolbar" role="toolbar" aria-label="Resume actions">
+    <button type="button" class="primary" onclick="window.print()" aria-label="Save as PDF">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Save as PDF
+    </button>
+    <a href="./index.html" aria-label="Back to website">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to site
+    </a>
+  </div>
+
+  <!-- ============================================================
+       ATS-FRIENDLY RESUME PAGE
+       ============================================================ -->
+  <article class="page" itemscope itemtype="https://schema.org/Person">
+
+    <header class="cv-head">
+      <h1 itemprop="name">Khaled Alnemer</h1>
+      <p class="tagline" itemprop="jobTitle">National Data &amp; Analytics Leader · Building Statistical Data Platforms</p>
+
+      <div class="contact-row">
+        <span itemprop="address">Riyadh, Saudi Arabia</span>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href="tel:+966548433224" itemprop="telephone">+966 548 433 224</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href="mailto:khaledalnemer@gmail.com" itemprop="email">khaledalnemer@gmail.com</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href="https://khaledalnemer.sa" itemprop="url">khaledalnemer.sa</a>
+      </div>
+    </header>
+
+    <!-- ============ SUMMARY ============ -->
+    <section>
+      <h2>Summary</h2>
+      <p>
+        Senior Business Intelligence leader with 8+ years building enterprise data warehouses,
+        governance frameworks, and executive dashboards across the Saudi public and financial sectors.
+        Currently leading national-scale analytics within the Ministry of Education ecosystem,
+        with a track record of standing up Data Offices, defining KPI frameworks aligned with
+        DAMA &amp; NDMO, and delivering decision-intelligence platforms for executive leadership.
+      </p>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section>
+      <h2>Experience</h2>
+
+      <div class="item">
+        <div class="item-head">
+          <h3>Senior Business Intelligence — Team Lead</h3>
+          <span class="item-meta">Jun 2024 – Present</span>
+        </div>
+        <div class="item-sub">Tatweer Educational Technologies · Riyadh, Saudi Arabia</div>
+        <p class="item-summary">
+          Leading national-scale analytics initiatives within the Ministry of Education ecosystem —
+          building governed data ecosystems and enabling decision intelligence.
+        </p>
+        <ul>
+          <li>Designed unified analytical layers aligned with national KPI frameworks.</li>
+          <li>Enabled cross-system data integration to support executive reporting.</li>
+          <li>Implemented governed data ingestion using Master Data Services (MDS).</li>
+          <li>Delivered executive dashboards supporting strategic and operational decisions.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3>Senior Business Intelligence Specialist — Team Lead</h3>
+          <span class="item-meta">Nov 2021 – Jun 2024</span>
+        </div>
+        <div class="item-sub">National eLearning Center · Riyadh, Saudi Arabia</div>
+        <p class="item-summary">
+          Established the Data Office and led the development of institutional analytics capabilities.
+        </p>
+        <ul>
+          <li>Built structured data models supporting performance monitoring.</li>
+          <li>Introduced governance frameworks improving data quality and ownership.</li>
+          <li>Delivered analytics solutions aligned with national digital transformation goals.</li>
+          <li>Enabled leadership visibility through advanced reporting systems.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3>Senior Business Intelligence Specialist</h3>
+          <span class="item-meta">Apr 2020 – Nov 2021</span>
+        </div>
+        <div class="item-sub">Alinma Bank · Riyadh, Saudi Arabia</div>
+        <ul>
+          <li>Contributed to enterprise Data Warehouse architecture development.</li>
+          <li>Improved reporting efficiency across business units.</li>
+          <li>Delivered insights supporting financial performance and growth.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3>Business Intelligence Officer</h3>
+          <span class="item-meta">Apr 2017 – Apr 2020</span>
+        </div>
+        <div class="item-sub">Albilad Bank · Riyadh, Saudi Arabia</div>
+        <ul>
+          <li>Developed SAS-based dashboards for sales and financing analytics.</li>
+          <li>Implemented Row-Level Security (RLS) for data governance.</li>
+          <li>Supported real estate financing performance analysis.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section>
+      <h2>Selected Projects</h2>
+
+      <div class="item">
+        <div class="item-head">
+          <h3>National Economic Indicators Platform</h3>
+          <span class="item-meta">Concept &amp; Prototype</span>
+        </div>
+        <p class="item-summary">
+          Unified analytical platform for national-level indicators aligned with statistical standards;
+          KPI Dictionary standardizing GDP, inflation, employment, and education indicators; executive
+          dashboards with trend analysis, regional comparison, and forecasting; governance models
+          (data ownership, validation workflows, version control).
+        </p>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3>Unified Government Data Layer</h3>
+          <span class="item-meta">Analytical Integration Model</span>
+        </div>
+        <p class="item-summary">
+          Centralized data layer integrating multiple government systems; dimensional models enabling
+          cross-domain analytics; integration of operational systems into a unified reporting
+          structure; master data governance using MDS.
+        </p>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3>Data Governance &amp; Quality Framework</h3>
+          <span class="item-meta">Implementation</span>
+        </div>
+        <p class="item-summary">
+          Governance model enhancing data trust and reliability; ownership structure (Owner / Steward);
+          data quality rules (completeness, accuracy, timeliness); monitoring dashboards for validation
+          and auditing.
+        </p>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3>Executive Decision Intelligence Dashboards</h3>
+          <span class="item-meta">Leadership Enablement</span>
+        </div>
+        <p class="item-summary">
+          Executive-level dashboards supporting strategic decision-making; KPI-driven performance
+          tracking; drill-down analysis from national to operational level; storytelling techniques
+          for executive consumption.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section>
+      <h2>Skills</h2>
+      <!-- ATS-friendly comma list (visually hidden but indexable) -->
+      <p class="visually-hidden">
+        National Data Platforms, Statistical Systems, Data Governance, DAMA, NDMO,
+        KPI Design, Indicator Standardization, Data Integration, Interoperability,
+        Data Warehousing, Analytical Layers, Dimensional Modeling, Master Data Services (MDS),
+        Executive Dashboards, Decision Intelligence, Power BI, SAS, SQL, Row-Level Security (RLS),
+        Data Quality, Reporting, Business Intelligence.
+      </p>
+      <!-- Visual chips -->
+      <ul class="skills-list" aria-hidden="true">
+        <li>National Data Platforms &amp; Statistical Systems</li>
+        <li>Data Governance (DAMA / NDMO)</li>
+        <li>KPI Design &amp; Indicator Standardization</li>
+        <li>Data Integration &amp; Interoperability</li>
+        <li>Data Warehousing &amp; Analytical Layers</li>
+        <li>Master Data Services (MDS)</li>
+        <li>Executive Dashboards &amp; Decision Intelligence</li>
+        <li>Power BI</li>
+        <li>SAS</li>
+        <li>SQL</li>
+        <li>Row-Level Security (RLS)</li>
+        <li>Data Quality &amp; Stewardship</li>
+      </ul>
+    </section>
+
+    <!-- ============ EDUCATION + CERTIFICATIONS ============ -->
+    <div class="grid-2">
+      <section>
+        <h2>Education</h2>
+        <div class="item">
+          <div class="item-head">
+            <h3>Bachelor of Information Systems (Computer Science)</h3>
+            <span class="item-meta">2011 – 2016</span>
+          </div>
+          <div class="item-sub">King Khalid University · Abha, Saudi Arabia</div>
+          <p class="item-summary muted">
+            Specialized in systems analysis, database design, and information architecture.
+            Led the Student Computer Club.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Certifications</h2>
+        <div class="item">
+          <div class="item-head">
+            <h3>Certified Data Management Professional (CDMP)</h3>
+          </div>
+          <div class="item-sub">DAMA International</div>
+        </div>
+        <div class="item">
+          <div class="item-head">
+            <h3>ROI Methodology Master Class</h3>
+          </div>
+          <div class="item-sub">ROI Institute</div>
+        </div>
+      </section>
+    </div>
+
+  </article>
+
+  <script>
+    // Optional: auto-open print dialog when ?print=1 is present
+    if (new URLSearchParams(location.search).get('print') === '1') {
+      window.addEventListener('load', () => setTimeout(() => window.print(), 300));
+    }
+  </script>
+</body>
+</html>
