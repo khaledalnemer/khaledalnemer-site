@@ -199,6 +199,70 @@
     [dir="rtl"] .rtl-flip { transform: scaleX(-1); }
 
     /* ============================================================
+       LOGO BADGE — prominent square holding a company logo.
+       Multi-layer shadow for depth (Apple/Linear-style),
+       refined ring border, smooth hover lift.
+       ============================================================ */
+    .logo-badge {
+      width: 4rem;          /* 64px */
+      height: 4rem;
+      border-radius: 0.875rem;  /* 14px — soft, modern */
+      border: 1px solid hsl(var(--border));
+      background: #ffffff;
+      padding: 0.625rem;    /* 10px — gives the logo room to breathe */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow:
+        0 1px 2px hsl(240 6% 10% / 0.04),
+        0 4px 12px hsl(240 6% 10% / 0.05);
+      transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1),
+                  box-shadow 220ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .logo-badge:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 1px 2px hsl(240 6% 10% / 0.06),
+        0 10px 24px hsl(240 6% 10% / 0.10);
+    }
+    .logo-badge img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+    /* Per-logo optical-size correction — some PNGs ship with built-in
+       whitespace around the mark, so scale them up to match siblings. */
+    .logo-badge img[src*="Alinma"] {
+      transform: scale(1.35);
+      transform-origin: center;
+    }
+    .dark .logo-badge {
+      background: #fafafa;          /* slight off-white in dark mode */
+      border-color: hsl(0 0% 100% / 0.08);
+      box-shadow:
+        0 1px 2px hsl(0 0% 0% / 0.4),
+        0 8px 24px hsl(0 0% 0% / 0.25);
+    }
+
+    /* Smaller variant for the header inline (Tatweer-style) — auto */
+    @media (max-width: 640px) {
+      .logo-badge { width: 3.25rem; height: 3.25rem; padding: 0.5rem; border-radius: 0.75rem; }
+    }
+
+    @media print {
+      .logo-badge {
+        background: #fff !important;
+        border-color: #ddd !important;
+        box-shadow: none !important;
+        transform: none !important;
+      }
+    }
+
+    /* ============================================================
        RESPONSIVE / MOBILE TWEAKS
        ============================================================ */
 
@@ -410,9 +474,14 @@
         <li class="timeline-item ps-6">
           <article class="rounded-lg border border-border bg-card p-5 md:p-6 shadow-sm hover:shadow transition">
             <!-- Company header -->
-            <div class="flex flex-wrap items-baseline justify-between gap-2 pb-3 border-b border-border/60">
-              <p class="font-semibold text-base md:text-lg" data-i18n="exp.tatweer.company">Tatweer Educational Technologies · Riyadh</p>
-              <span class="font-mono text-xs text-muted-foreground" data-i18n="exp.tatweer.span">Jun 2024 – Present</span>
+            <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-border/60">
+              <div class="flex items-center gap-4 min-w-0 flex-1">
+                <div class="logo-badge shrink-0">
+                  <img src="./Tetco.svg?v=3" alt="Tatweer Educational Technologies" loading="lazy" />
+                </div>
+                <p class="font-semibold text-base md:text-lg" data-i18n="exp.tatweer.company">Tatweer Educational Technologies · Riyadh</p>
+              </div>
+              <span class="font-mono text-xs text-muted-foreground shrink-0" data-i18n="exp.tatweer.span">Jun 2024 – Present</span>
             </div>
 
             <!-- Current role (promoted) — green accent treatment -->
@@ -458,50 +527,71 @@
 
         <li class="timeline-item ps-6">
           <article class="rounded-lg border border-border bg-card p-5 md:p-6 shadow-sm hover:shadow transition">
-            <div class="flex flex-wrap items-baseline justify-between gap-2">
-              <h3 class="font-semibold text-base md:text-lg" data-i18n="exp.nelc.role">Senior BI Specialist — Team Lead</h3>
-              <span class="font-mono text-xs text-muted-foreground" data-i18n="exp.nelc.date">Nov 2021 – Jun 2024</span>
+            <div class="flex items-start gap-5">
+              <div class="logo-badge shrink-0 mt-0.5">
+                <img src="./default.png?v=3" alt="National eLearning Center" loading="lazy" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex flex-wrap items-baseline justify-between gap-2">
+                  <h3 class="font-semibold text-base md:text-lg" data-i18n="exp.nelc.role">Senior BI Specialist — Team Lead</h3>
+                  <span class="font-mono text-xs text-muted-foreground" data-i18n="exp.nelc.date">Nov 2021 – Jun 2024</span>
+                </div>
+                <p class="text-sm text-muted-foreground mt-1" data-i18n="exp.nelc.company">National eLearning Center · Riyadh</p>
+                <p class="mt-3 text-sm leading-relaxed" data-i18n="exp.nelc.summary">
+                  Established the Data Office and led the development of institutional analytics capabilities.
+                </p>
+                <ul class="mt-3 space-y-1.5 text-sm list-disc ps-5 marker:text-muted-foreground/60">
+                  <li data-i18n="exp.nelc.b1">Built structured data models supporting performance monitoring.</li>
+                  <li data-i18n="exp.nelc.b2">Introduced governance frameworks improving data quality and ownership.</li>
+                  <li data-i18n="exp.nelc.b3">Delivered analytics aligned with national digital transformation goals.</li>
+                  <li data-i18n="exp.nelc.b4">Enabled leadership visibility through advanced reporting systems.</li>
+                </ul>
+              </div>
             </div>
-            <p class="text-sm text-muted-foreground mt-1" data-i18n="exp.nelc.company">National eLearning Center · Riyadh</p>
-            <p class="mt-3 text-sm leading-relaxed" data-i18n="exp.nelc.summary">
-              Established the Data Office and led the development of institutional analytics capabilities.
-            </p>
-            <ul class="mt-3 space-y-1.5 text-sm list-disc ps-5 marker:text-muted-foreground/60">
-              <li data-i18n="exp.nelc.b1">Built structured data models supporting performance monitoring.</li>
-              <li data-i18n="exp.nelc.b2">Introduced governance frameworks improving data quality and ownership.</li>
-              <li data-i18n="exp.nelc.b3">Delivered analytics aligned with national digital transformation goals.</li>
-              <li data-i18n="exp.nelc.b4">Enabled leadership visibility through advanced reporting systems.</li>
-            </ul>
           </article>
         </li>
 
         <li class="timeline-item ps-6">
           <article class="rounded-lg border border-border bg-card p-5 md:p-6 shadow-sm hover:shadow transition">
-            <div class="flex flex-wrap items-baseline justify-between gap-2">
-              <h3 class="font-semibold text-base md:text-lg" data-i18n="exp.alinma.role">Senior Business Intelligence Specialist</h3>
-              <span class="font-mono text-xs text-muted-foreground" data-i18n="exp.alinma.date">Apr 2020 – Nov 2021</span>
+            <div class="flex items-start gap-5">
+              <div class="logo-badge shrink-0 mt-0.5">
+                <img src="./Alinma.png?v=3" alt="Alinma Bank" loading="lazy" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex flex-wrap items-baseline justify-between gap-2">
+                  <h3 class="font-semibold text-base md:text-lg" data-i18n="exp.alinma.role">Senior Business Intelligence Specialist</h3>
+                  <span class="font-mono text-xs text-muted-foreground" data-i18n="exp.alinma.date">Apr 2020 – Nov 2021</span>
+                </div>
+                <p class="text-sm text-muted-foreground mt-1" data-i18n="exp.alinma.company">Alinma Bank · Riyadh</p>
+                <ul class="mt-3 space-y-1.5 text-sm list-disc ps-5 marker:text-muted-foreground/60">
+                  <li data-i18n="exp.alinma.b1">Contributed to enterprise Data Warehouse architecture development.</li>
+                  <li data-i18n="exp.alinma.b2">Improved reporting efficiency across business units.</li>
+                  <li data-i18n="exp.alinma.b3">Delivered insights supporting financial performance and growth.</li>
+                </ul>
+              </div>
             </div>
-            <p class="text-sm text-muted-foreground mt-1" data-i18n="exp.alinma.company">Alinma Bank · Riyadh</p>
-            <ul class="mt-3 space-y-1.5 text-sm list-disc ps-5 marker:text-muted-foreground/60">
-              <li data-i18n="exp.alinma.b1">Contributed to enterprise Data Warehouse architecture development.</li>
-              <li data-i18n="exp.alinma.b2">Improved reporting efficiency across business units.</li>
-              <li data-i18n="exp.alinma.b3">Delivered insights supporting financial performance and growth.</li>
-            </ul>
           </article>
         </li>
 
         <li class="timeline-item ps-6">
           <article class="rounded-lg border border-border bg-card p-5 md:p-6 shadow-sm hover:shadow transition">
-            <div class="flex flex-wrap items-baseline justify-between gap-2">
-              <h3 class="font-semibold text-base md:text-lg" data-i18n="exp.albilad.role">Business Intelligence Officer</h3>
-              <span class="font-mono text-xs text-muted-foreground" data-i18n="exp.albilad.date">Apr 2017 – Apr 2020</span>
+            <div class="flex items-start gap-5">
+              <div class="logo-badge shrink-0 mt-0.5">
+                <img src="./albilad.png?v=3" alt="Albilad Bank" loading="lazy" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex flex-wrap items-baseline justify-between gap-2">
+                  <h3 class="font-semibold text-base md:text-lg" data-i18n="exp.albilad.role">Business Intelligence Officer</h3>
+                  <span class="font-mono text-xs text-muted-foreground" data-i18n="exp.albilad.date">Apr 2017 – Apr 2020</span>
+                </div>
+                <p class="text-sm text-muted-foreground mt-1" data-i18n="exp.albilad.company">Albilad Bank · Riyadh</p>
+                <ul class="mt-3 space-y-1.5 text-sm list-disc ps-5 marker:text-muted-foreground/60">
+                  <li data-i18n="exp.albilad.b1">Developed SAS-based dashboards for sales and financing analytics.</li>
+                  <li data-i18n="exp.albilad.b2">Implemented Row-Level Security (RLS) for data governance.</li>
+                  <li data-i18n="exp.albilad.b3">Supported real estate financing performance analysis.</li>
+                </ul>
+              </div>
             </div>
-            <p class="text-sm text-muted-foreground mt-1" data-i18n="exp.albilad.company">Albilad Bank · Riyadh</p>
-            <ul class="mt-3 space-y-1.5 text-sm list-disc ps-5 marker:text-muted-foreground/60">
-              <li data-i18n="exp.albilad.b1">Developed SAS-based dashboards for sales and financing analytics.</li>
-              <li data-i18n="exp.albilad.b2">Implemented Row-Level Security (RLS) for data governance.</li>
-              <li data-i18n="exp.albilad.b3">Supported real estate financing performance analysis.</li>
-            </ul>
           </article>
         </li>
       </ol>
