@@ -378,7 +378,7 @@
     <section id="about" class="py-12 md:py-16 border-t border-border/60">
       <h2 class="text-2xl md:text-3xl font-semibold tracking-tight" data-i18n="about.heading">About</h2>
       <p class="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl" data-i18n="about.body">
-        Senior Business Intelligence leader with 8+ years building enterprise data warehouses, governance frameworks, and executive dashboards across the Saudi public and financial sectors. Currently leading analytics inside the Ministry of Education ecosystem, with prior leadership of the Data Office at the National eLearning Center, and senior BI roles at Alinma Bank and Albilad Bank.
+        Senior Business Intelligence leader with 9+ years building enterprise data warehouses, governance frameworks, and executive dashboards across the Saudi public and financial sectors. Currently leading analytics inside the Ministry of Education ecosystem, with prior leadership of the Data Office at the National eLearning Center, and senior BI roles at Alinma Bank and Albilad Bank.
       </p>
     </section>
 
@@ -387,23 +387,53 @@
       <h2 class="text-2xl md:text-3xl font-semibold tracking-tight" data-i18n="experience.heading">Experience</h2>
 
       <ol class="mt-8 space-y-6 ms-6 border-s border-border/80">
-        <!-- card template -->
+        <!-- Tatweer — current company, two roles (promotion within company) -->
         <li class="timeline-item ps-6">
           <article class="rounded-lg border border-border bg-card p-5 md:p-6 shadow-sm hover:shadow transition">
-            <div class="flex flex-wrap items-baseline justify-between gap-2">
-              <h3 class="font-semibold text-base md:text-lg" data-i18n="exp.tatweer.role">Senior Business Intelligence — Team Lead</h3>
-              <span class="font-mono text-xs text-muted-foreground" data-i18n="exp.tatweer.date">Jun 2024 – Present</span>
+            <!-- Company header -->
+            <div class="flex flex-wrap items-baseline justify-between gap-2 pb-3 border-b border-border/60">
+              <p class="font-semibold text-base md:text-lg" data-i18n="exp.tatweer.company">Tatweer Educational Technologies · Riyadh</p>
+              <span class="font-mono text-xs text-muted-foreground" data-i18n="exp.tatweer.span">Jun 2024 – Present</span>
             </div>
-            <p class="text-sm text-muted-foreground mt-1" data-i18n="exp.tatweer.company">Tatweer Educational Technologies · Riyadh</p>
-            <p class="mt-3 text-sm leading-relaxed" data-i18n="exp.tatweer.summary">
-              Leading national-scale analytics initiatives within the Ministry of Education ecosystem — building governed data ecosystems and enabling decision intelligence.
-            </p>
-            <ul class="mt-3 space-y-1.5 text-sm list-disc ms-5 marker:text-muted-foreground/60">
-              <li data-i18n="exp.tatweer.b1">Designed unified analytical layers aligned with national KPI frameworks.</li>
-              <li data-i18n="exp.tatweer.b2">Enabled cross-system data integration to support executive reporting.</li>
-              <li data-i18n="exp.tatweer.b3">Implemented governed data ingestion using Master Data Services (MDS).</li>
-              <li data-i18n="exp.tatweer.b4">Delivered executive dashboards supporting strategic and operational decisions.</li>
-            </ul>
+
+            <!-- Current role (promoted) — green accent treatment -->
+            <div class="relative mt-4 ps-4">
+              <span aria-hidden="true" class="absolute inset-y-0 inset-inline-start-0 w-[3px] rounded bg-emerald-500"></span>
+              <div class="flex items-center gap-2.5 flex-wrap">
+                <span class="font-mono text-[11px] tracking-wide px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-900 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900/60 inline-flex items-center gap-1">
+                  <span data-i18n="exp.tatweer.acting.date">NOV 2025</span>
+                  <span aria-hidden="true">→</span>
+                </span>
+                <h3 class="font-semibold text-base" data-i18n="exp.tatweer.acting.role">Data Team Senior Manager (Acting)</h3>
+              </div>
+              <p class="font-mono text-xs text-muted-foreground mt-1" data-i18n="exp.tatweer.acting.scope">~18 team members · BI + Data Engineering</p>
+              <p class="mt-3 text-sm leading-relaxed" data-i18n="exp.tatweer.acting.summary">
+                Expanded leadership across the Data function — aligning Business Intelligence and Data Engineering under a shared delivery model.
+              </p>
+              <ul class="mt-3 space-y-1.5 text-sm list-disc ps-5 marker:text-emerald-500">
+                <li data-i18n="exp.tatweer.acting.b1">Lead the full Data function, aligning Business Intelligence and Data Engineering teams under a shared delivery model.</li>
+                <li data-i18n="exp.tatweer.acting.b2">Strengthen collaboration between technical teams and business stakeholders to drive sustainable data value.</li>
+                <li data-i18n="exp.tatweer.acting.b3">Improve coordination between analytics and engineering capabilities, contributing to data-product maturity through policies and operational procedures.</li>
+                <li data-i18n="exp.tatweer.acting.b4">Support structured governance and scalable delivery practices while developing leadership and administrative management capabilities.</li>
+              </ul>
+            </div>
+
+            <!-- Previous role at same company -->
+            <div class="mt-6">
+              <div class="flex flex-wrap items-baseline justify-between gap-2">
+                <h3 class="font-semibold text-base" data-i18n="exp.tatweer.role">Senior Business Intelligence — Team Lead</h3>
+                <span class="font-mono text-xs text-muted-foreground" data-i18n="exp.tatweer.date">Jun 2024 – Nov 2025</span>
+              </div>
+              <p class="mt-2 text-sm leading-relaxed" data-i18n="exp.tatweer.summary">
+                Leading national-scale analytics initiatives within the Ministry of Education ecosystem — building governed data ecosystems and enabling decision intelligence.
+              </p>
+              <ul class="mt-3 space-y-1.5 text-sm list-disc ps-5 marker:text-muted-foreground/60">
+                <li data-i18n="exp.tatweer.b1">Designed unified analytical layers aligned with national KPI frameworks.</li>
+                <li data-i18n="exp.tatweer.b2">Enabled cross-system data integration to support executive reporting.</li>
+                <li data-i18n="exp.tatweer.b3">Implemented governed data ingestion using Master Data Services (MDS).</li>
+                <li data-i18n="exp.tatweer.b4">Delivered executive dashboards supporting strategic and operational decisions.</li>
+              </ul>
+            </div>
           </article>
         </li>
 
@@ -417,7 +447,7 @@
             <p class="mt-3 text-sm leading-relaxed" data-i18n="exp.nelc.summary">
               Established the Data Office and led the development of institutional analytics capabilities.
             </p>
-            <ul class="mt-3 space-y-1.5 text-sm list-disc ms-5 marker:text-muted-foreground/60">
+            <ul class="mt-3 space-y-1.5 text-sm list-disc ps-5 marker:text-muted-foreground/60">
               <li data-i18n="exp.nelc.b1">Built structured data models supporting performance monitoring.</li>
               <li data-i18n="exp.nelc.b2">Introduced governance frameworks improving data quality and ownership.</li>
               <li data-i18n="exp.nelc.b3">Delivered analytics aligned with national digital transformation goals.</li>
@@ -433,7 +463,7 @@
               <span class="font-mono text-xs text-muted-foreground" data-i18n="exp.alinma.date">Apr 2020 – Nov 2021</span>
             </div>
             <p class="text-sm text-muted-foreground mt-1" data-i18n="exp.alinma.company">Alinma Bank · Riyadh</p>
-            <ul class="mt-3 space-y-1.5 text-sm list-disc ms-5 marker:text-muted-foreground/60">
+            <ul class="mt-3 space-y-1.5 text-sm list-disc ps-5 marker:text-muted-foreground/60">
               <li data-i18n="exp.alinma.b1">Contributed to enterprise Data Warehouse architecture development.</li>
               <li data-i18n="exp.alinma.b2">Improved reporting efficiency across business units.</li>
               <li data-i18n="exp.alinma.b3">Delivered insights supporting financial performance and growth.</li>
@@ -448,7 +478,7 @@
               <span class="font-mono text-xs text-muted-foreground" data-i18n="exp.albilad.date">Apr 2017 – Apr 2020</span>
             </div>
             <p class="text-sm text-muted-foreground mt-1" data-i18n="exp.albilad.company">Albilad Bank · Riyadh</p>
-            <ul class="mt-3 space-y-1.5 text-sm list-disc ms-5 marker:text-muted-foreground/60">
+            <ul class="mt-3 space-y-1.5 text-sm list-disc ps-5 marker:text-muted-foreground/60">
               <li data-i18n="exp.albilad.b1">Developed SAS-based dashboards for sales and financing analytics.</li>
               <li data-i18n="exp.albilad.b2">Implemented Row-Level Security (RLS) for data governance.</li>
               <li data-i18n="exp.albilad.b3">Supported real estate financing performance analysis.</li>
@@ -637,14 +667,25 @@
         'hero.location': 'Riyadh, Saudi Arabia',
 
         'about.heading': 'About',
-        'about.body': 'Senior Business Intelligence leader with 8+ years building enterprise data warehouses, governance frameworks, and executive dashboards across the Saudi public and financial sectors. Currently leading analytics inside the Ministry of Education ecosystem, with prior leadership of the Data Office at the National eLearning Center, and senior BI roles at Alinma Bank and Albilad Bank.',
+        'about.body': 'Senior Business Intelligence leader with 9+ years building enterprise data warehouses, governance frameworks, and executive dashboards across the Saudi public and financial sectors. Currently leading analytics inside the Ministry of Education ecosystem, with prior leadership of the Data Office at the National eLearning Center, and senior BI roles at Alinma Bank and Albilad Bank.',
 
         'experience.heading': 'Experience',
 
-        'exp.tatweer.role': 'Senior Business Intelligence — Team Lead',
         'exp.tatweer.company': 'Tatweer Educational Technologies · Riyadh',
-        'exp.tatweer.date': 'Jun 2024 – Present',
-        'exp.tatweer.summary': 'Leading national-scale analytics initiatives within the Ministry of Education ecosystem — building governed data ecosystems and enabling decision intelligence.',
+        'exp.tatweer.span': 'Jun 2024 – Present',
+
+        'exp.tatweer.acting.date': 'NOV 2025',
+        'exp.tatweer.acting.role': 'Data Team Senior Manager (Acting)',
+        'exp.tatweer.acting.scope': '~18 team members · BI + Data Engineering',
+        'exp.tatweer.acting.summary': 'Expanded leadership across the Data function — aligning Business Intelligence and Data Engineering under a shared delivery model.',
+        'exp.tatweer.acting.b1': 'Lead the full Data function, aligning Business Intelligence and Data Engineering teams under a shared delivery model.',
+        'exp.tatweer.acting.b2': 'Strengthen collaboration between technical teams and business stakeholders to drive sustainable data value.',
+        'exp.tatweer.acting.b3': 'Improve coordination between analytics and engineering capabilities, contributing to data-product maturity through policies and operational procedures.',
+        'exp.tatweer.acting.b4': 'Support structured governance and scalable delivery practices while developing leadership and administrative management capabilities.',
+
+        'exp.tatweer.role': 'Senior Business Intelligence — Team Lead',
+        'exp.tatweer.date': 'Jun 2024 – Nov 2025',
+        'exp.tatweer.summary': 'Led national-scale analytics initiatives within the Ministry of Education ecosystem — building governed data ecosystems and enabling decision intelligence.',
         'exp.tatweer.b1': 'Designed unified analytical layers aligned with national KPI frameworks.',
         'exp.tatweer.b2': 'Enabled cross-system data integration to support executive reporting.',
         'exp.tatweer.b3': 'Implemented governed data ingestion using Master Data Services (MDS).',
@@ -736,13 +777,24 @@
         'hero.location': 'الرياض، المملكة العربية السعودية',
 
         'about.heading': 'نبذة',
-        'about.body': 'قائد ذكاء أعمال (Senior BI) بخبرة تتجاوز ٨ سنوات في بناء مستودعات البيانات المؤسسية، أُطر الحوكمة، ولوحات القرار التنفيذية في القطاعين الحكومي والمالي السعودي. أقود حالياً تحليلات داخل منظومة وزارة التعليم، وقد قدتُ سابقاً مكتب البيانات في المركز الوطني للتعلم الإلكتروني، وشغلتُ مناصب أساسية في ذكاء الأعمال لدى مصرف الإنماء وبنك البلاد.',
+        'about.body': 'قائد ذكاء أعمال (Senior BI) بخبرة تتجاوز ٩ سنوات في بناء مستودعات البيانات المؤسسية، أُطر الحوكمة، ولوحات القرار التنفيذية في القطاعين الحكومي والمالي السعودي. أقود حالياً تحليلات داخل منظومة وزارة التعليم، وقد قدتُ سابقاً مكتب البيانات في المركز الوطني للتعلم الإلكتروني، وشغلتُ مناصب أساسية في ذكاء الأعمال لدى مصرف الإنماء وبنك البلاد.',
 
         'experience.heading': 'الخبرات المهنية',
 
-        'exp.tatweer.role': 'أخصائي ذكاء أعمال أول — قائد فريق',
         'exp.tatweer.company': 'تطوير لتقنيات التعليم · الرياض',
-        'exp.tatweer.date': 'يونيو ٢٠٢٤ – حتى الآن',
+        'exp.tatweer.span': 'يونيو ٢٠٢٤ – حتى الآن',
+
+        'exp.tatweer.acting.date': 'نوفمبر ٢٠٢٥',
+        'exp.tatweer.acting.role': 'مدير أول لفريق البيانات (مكلَّف)',
+        'exp.tatweer.acting.scope': '~١٨ عضو فريق · ذكاء أعمال + هندسة بيانات',
+        'exp.tatweer.acting.summary': 'توسيع نطاق القيادة عبر منظومة البيانات — بمواءمة فِرق ذكاء الأعمال وهندسة البيانات تحت نموذج تسليم موحّد.',
+        'exp.tatweer.acting.b1': 'قيادة منظومة البيانات بأكملها بمواءمة فِرق ذكاء الأعمال وهندسة البيانات تحت نموذج تسليم موحّد.',
+        'exp.tatweer.acting.b2': 'تعزيز التعاون بين الفِرق التقنية وأصحاب المصلحة في الأعمال لتحقيق قيمة بيانات مستدامة.',
+        'exp.tatweer.acting.b3': 'تحسين التنسيق بين قدرات التحليلات والهندسة، والمساهمة في نضج منتجات البيانات عبر السياسات والإجراءات التشغيلية.',
+        'exp.tatweer.acting.b4': 'دعم ممارسات الحوكمة المنظَّمة والتسليم القابل للتوسّع، مع تطوير قدرات قيادية وإدارية.',
+
+        'exp.tatweer.role': 'أخصائي ذكاء أعمال أول — قائد فريق',
+        'exp.tatweer.date': 'يونيو ٢٠٢٤ – نوفمبر ٢٠٢٥',
         'exp.tatweer.summary': 'قيادة مبادرات تحليلية وطنية ضمن منظومة وزارة التعليم — بناء منظومات بيانات محوكَمة وتمكين ذكاء القرار.',
         'exp.tatweer.b1': 'تصميم طبقات تحليلية موحّدة متوافقة مع أُطر مؤشرات الأداء الوطنية.',
         'exp.tatweer.b2': 'تمكين تكامل البيانات بين الأنظمة لدعم التقارير التنفيذية.',
