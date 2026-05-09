@@ -180,6 +180,25 @@
     .fade-up { animation: fadeUp 0.6s ease-out both; }
 
     /* ============================================================
+       MODAL (Call dialog)
+       ============================================================ */
+    #call-modal { display: none; }
+    #call-modal.open { display: flex; }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(8px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0)  scale(1); }
+    }
+    @keyframes backdropIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    #call-modal.open .modal-panel { animation: modalIn 200ms ease-out both; }
+    #call-modal.open > div:first-child { animation: backdropIn 180ms ease-out both; }
+
+    /* Auto-flip directional icons in RTL */
+    [dir="rtl"] .rtl-flip { transform: scaleX(-1); }
+
+    /* ============================================================
        RESPONSIVE / MOBILE TWEAKS
        ============================================================ */
 
@@ -368,7 +387,7 @@
 
       <div class="hero-meta mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
         <span class="inline-flex items-center gap-1.5"><i data-lucide="map-pin" class="h-3.5 w-3.5"></i><span data-i18n="hero.location">Riyadh, Saudi Arabia</span></span>
-        <a href="mailto:khaledalnemer@gmail.com" class="inline-flex items-center gap-1.5 hover:text-foreground"><i data-lucide="at-sign" class="h-3.5 w-3.5"></i>khaledalnemer@gmail.com</a>
+        <a href="https://outlook.office.com/mail/deeplink/compose?to=khaledalnemer@gmail.com&subject=Hello%20Khaled" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-foreground"><i data-lucide="at-sign" class="h-3.5 w-3.5"></i>khaledalnemer@gmail.com</a>
         <a href="tel:+966548433224" class="inline-flex items-center gap-1.5 hover:text-foreground"><i data-lucide="phone" class="h-3.5 w-3.5"></i>+966 54 843 3224</a>
         <a href="https://khaledalnemer.sa" class="inline-flex items-center gap-1.5 hover:text-foreground"><i data-lucide="globe" class="h-3.5 w-3.5"></i>khaledalnemer.sa</a>
       </div>
@@ -613,16 +632,18 @@
           Open to leadership conversations around statistical platforms, data governance, and executive analytics.
         </p>
         <div class="mt-6 flex flex-wrap justify-center gap-3">
-          <a href="mailto:khaledalnemer@gmail.com"
+          <a id="email-btn"
+             href="https://outlook.office.com/mail/deeplink/compose?to=khaledalnemer@gmail.com&subject=Hello%20Khaled"
+             target="_blank" rel="noopener"
              class="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:opacity-90 transition">
             <i data-lucide="mail" class="h-4 w-4"></i>
             <span data-i18n="contact.email">Email me</span>
           </a>
-          <a href="tel:+966548433224"
+          <button id="call-btn" type="button"
              class="inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-2.5 text-sm font-medium hover:bg-accent transition">
             <i data-lucide="phone" class="h-4 w-4"></i>
             <span data-i18n="contact.call">Call</span>
-          </a>
+          </button>
           <a href="./Khaled_Alnemer_Resume.pdf" download
              class="inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-2.5 text-sm font-medium hover:bg-accent transition">
             <i data-lucide="download" class="h-4 w-4"></i>
@@ -634,6 +655,50 @@
 
   </main>
 
+  <!-- ============== CALL MODAL ============== -->
+  <div id="call-modal" role="dialog" aria-modal="true" aria-labelledby="call-modal-title" aria-hidden="true"
+       class="fixed inset-0 z-50 items-center justify-center p-4">
+    <div class="absolute inset-0 bg-foreground/40 backdrop-blur-sm" data-modal-close></div>
+    <div class="relative w-full max-w-sm rounded-xl border border-border bg-card p-6 shadow-2xl modal-panel">
+      <button data-modal-close type="button" aria-label="Close"
+              class="absolute top-3 end-3 inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground hover:bg-accent hover:text-foreground transition">
+        <i data-lucide="x" class="h-4 w-4"></i>
+      </button>
+
+      <div class="flex items-center gap-3">
+        <div class="grid h-11 w-11 place-items-center rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300">
+          <i data-lucide="phone" class="h-5 w-5"></i>
+        </div>
+        <div>
+          <h3 id="call-modal-title" class="font-semibold text-base" data-i18n="modal.call.title">Call Khaled</h3>
+          <p class="text-xs text-muted-foreground" data-i18n="modal.call.sub">Riyadh business hours · GMT+3</p>
+        </div>
+      </div>
+
+      <div class="mt-5 rounded-md border border-border bg-muted/50 px-4 py-3 flex items-center justify-between gap-3">
+        <span dir="ltr" id="phone-display" class="font-mono text-base md:text-lg font-semibold tracking-wider select-all">+966 54 843 3224</span>
+        <button id="copy-phone-btn" type="button"
+                class="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-md border border-border bg-background hover:bg-accent transition">
+          <i data-lucide="copy" class="h-3 w-3"></i>
+          <span data-i18n="modal.call.copy">Copy</span>
+        </button>
+      </div>
+
+      <div class="mt-5 flex flex-wrap gap-2">
+        <a href="tel:+966548433224"
+           class="inline-flex flex-1 items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90 transition">
+          <i data-lucide="phone-call" class="h-4 w-4"></i>
+          <span data-i18n="modal.call.dial">Dial now</span>
+        </a>
+        <button data-modal-close type="button"
+                class="inline-flex flex-1 items-center justify-center gap-2 rounded-md border border-border bg-background px-4 py-2 text-sm font-medium hover:bg-accent transition">
+          <i data-lucide="arrow-left" class="h-4 w-4 rtl-flip"></i>
+          <span data-i18n="modal.call.back">Back to site</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- ============== FOOTER ============== -->
   <footer class="border-t border-border/60 mt-8">
     <div class="container mx-auto max-w-5xl px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
@@ -641,7 +706,7 @@
       <div class="flex items-center gap-3">
         <a href="https://khaledalnemer.sa" class="hover:text-foreground">khaledalnemer.sa</a>
         <span aria-hidden="true">·</span>
-        <a href="mailto:khaledalnemer@gmail.com" class="hover:text-foreground">khaledalnemer@gmail.com</a>
+        <a href="https://outlook.office.com/mail/deeplink/compose?to=khaledalnemer@gmail.com&subject=Hello%20Khaled" target="_blank" rel="noopener" class="hover:text-foreground">khaledalnemer@gmail.com</a>
       </div>
     </div>
   </footer>
@@ -756,6 +821,13 @@
         'contact.call': 'Call',
         'contact.cv': 'Download CV',
 
+        'modal.call.title': 'Call Khaled',
+        'modal.call.sub': 'Riyadh business hours · GMT+3',
+        'modal.call.copy': 'Copy',
+        'modal.call.copied': 'Copied ✓',
+        'modal.call.dial': 'Dial now',
+        'modal.call.back': 'Back to site',
+
         'footer.rights': 'All rights reserved.',
       },
 
@@ -863,8 +935,15 @@
         'contact.heading': 'لنبنِ شيئاً على مستوى وطني.',
         'contact.body': 'منفتح على نقاشات قيادية حول المنصات الإحصائية، حوكمة البيانات، والتحليلات التنفيذية.',
         'contact.email': 'مراسلتي عبر البريد',
-        'contact.call': 'اتصل',
+        'contact.call': 'اتصل بي',
         'contact.cv': 'تحميل السيرة الذاتية',
+
+        'modal.call.title': 'الاتصال بخالد',
+        'modal.call.sub': 'ضمن أوقات العمل في الرياض · GMT+3',
+        'modal.call.copy': 'نسخ',
+        'modal.call.copied': 'تم النسخ ✓',
+        'modal.call.dial': 'اتصل الآن',
+        'modal.call.back': 'العودة إلى الموقع',
 
         'footer.rights': 'جميع الحقوق محفوظة.',
       },
@@ -900,6 +979,59 @@
     themeToggle.addEventListener('click', () => {
       const isDark = document.documentElement.classList.toggle('dark');
       try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (e) {}
+    });
+
+    // ============ call modal ============
+    const callBtn   = document.getElementById('call-btn');
+    const callModal = document.getElementById('call-modal');
+    const copyBtn   = document.getElementById('copy-phone-btn');
+    const PHONE     = '+966548433224';
+
+    function openCallModal() {
+      callModal.classList.add('open');
+      callModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeCallModal() {
+      callModal.classList.remove('open');
+      callModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    callBtn.addEventListener('click', openCallModal);
+
+    // close via [data-modal-close] elements (X, Back to site, backdrop)
+    callModal.querySelectorAll('[data-modal-close]').forEach(el => {
+      el.addEventListener('click', closeCallModal);
+    });
+
+    // close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && callModal.classList.contains('open')) closeCallModal();
+    });
+
+    // copy number
+    copyBtn.addEventListener('click', async () => {
+      const lang = document.documentElement.lang || 'en';
+      const dict = (i18n && i18n[lang]) || {};
+      const labelCopy   = dict['modal.call.copy']   || 'Copy';
+      const labelCopied = dict['modal.call.copied'] || 'Copied ✓';
+      const textSpan = copyBtn.querySelector('span');
+      try {
+        await navigator.clipboard.writeText(PHONE);
+        if (textSpan) textSpan.textContent = labelCopied;
+        copyBtn.classList.add('text-emerald-600');
+      } catch (err) {
+        // fallback: select the visible number
+        const range = document.createRange();
+        range.selectNode(document.getElementById('phone-display'));
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+      }
+      setTimeout(() => {
+        if (textSpan) textSpan.textContent = labelCopy;
+        copyBtn.classList.remove('text-emerald-600');
+      }, 1600);
     });
 
     // ============ mobile menu ============
