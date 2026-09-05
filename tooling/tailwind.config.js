@@ -3,7 +3,7 @@
 // when the site loaded the Tailwind Play CDN. Keep the two in sync if you ever
 // re-add a runtime build.
 module.exports = {
-  content: ['./index.html'],
+  content: ['../index.html'],
   darkMode: 'class',
   theme: {
     container: { center: true, padding: '1rem' },

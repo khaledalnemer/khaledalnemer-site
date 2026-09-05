@@ -4,6 +4,20 @@ Static site. The only build step is Tailwind: it turns the classes used in
 `index.html` into `styles.css`. Everything else is committed as-is and served
 directly by DigitalOcean App Platform from `main`.
 
+## Layout
+
+The repo root holds **only files that get served** — HTML, `styles.css`,
+images, the PDF, `robots.txt`, `sitemap.xml`. All build tooling lives in
+`tooling/`.
+
+That separation is deliberate. When `package.json` sat in the root,
+DigitalOcean stopped deploying: App Platform inspects the root of a static
+site and a `package.json` there makes it treat the repo as a Node app to
+build rather than a directory to serve. Keeping the root free of manifests
+leaves it detectable as plain static content again.
+
+**Do not move `tooling/package.json` back to the root.**
+
 ## Requirements
 
 Node 18+ (developed on Node 24, npm 11).
@@ -11,8 +25,9 @@ Node 18+ (developed on Node 24, npm 11).
 ## Build
 
 ```bash
+cd tooling
 npm install     # first time only
-npm run build   # writes styles.css
+npm run build   # writes ../styles.css
 ```
 
 `npm run watch` rebuilds on save while you edit.
@@ -20,6 +35,8 @@ npm run build   # writes styles.css
 **Run `npm run build` and commit `styles.css` whenever you add, remove or change
 a Tailwind class in `index.html`.** The stylesheet only contains the utilities
 actually found in the file, so a new class is invisible until you rebuild.
+`styles.css` is committed on purpose — DigitalOcean serves the repo as-is and
+never runs this build.
 
 ## Why there is a build step
 

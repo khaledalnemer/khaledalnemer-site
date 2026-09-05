@@ -1,0 +1,13 @@
+{
+  "name": "khaledalnemer-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Build tooling for khaledalnemer.sa. Kept out of the repo root so the deployed site stays a plain static directory with no buildpack to detect.",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ../styles.css --minify",
+    "watch": "tailwindcss -i ./src/input.css -o ../styles.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}
