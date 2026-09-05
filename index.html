@@ -15,8 +15,8 @@
   <!-- Tailwind via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Lucide icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Lucide icons — pinned: @latest floats across major versions and can break createIcons() silently -->
+  <script src="https://unpkg.com/lucide@1.41.0/dist/umd/lucide.min.js"></script>
 
   <script>
     // Apply theme before paint to avoid flash
@@ -451,8 +451,8 @@
 
       <div class="hero-meta mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
         <span class="inline-flex items-center gap-1.5"><i data-lucide="map-pin" class="h-3.5 w-3.5"></i><span data-i18n="hero.location">Riyadh, Saudi Arabia</span></span>
-        <a href="https://outlook.office.com/mail/deeplink/compose?to=khaledalnemer@gmail.com&subject=Hello%20Khaled" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-foreground"><i data-lucide="at-sign" class="h-3.5 w-3.5"></i>khaledalnemer@gmail.com</a>
-        <a href="tel:+966548433224" class="inline-flex items-center gap-1.5 hover:text-foreground"><i data-lucide="phone" class="h-3.5 w-3.5"></i>+966 54 843 3224</a>
+        <a href="mailto:khaledalnemer@gmail.com?subject=Hello%20Khaled" class="inline-flex items-center gap-1.5 hover:text-foreground"><i data-lucide="at-sign" class="h-3.5 w-3.5"></i>khaledalnemer@gmail.com</a>
+        <a href="tel:+966548433224" class="inline-flex items-center gap-1.5 hover:text-foreground"><i data-lucide="phone" class="h-3.5 w-3.5"></i><bdi dir="ltr">+966 54 843 3224</bdi></a>
         <a href="https://khaledalnemer.sa" class="inline-flex items-center gap-1.5 hover:text-foreground"><i data-lucide="globe" class="h-3.5 w-3.5"></i>khaledalnemer.sa</a>
       </div>
     </section>
@@ -486,7 +486,7 @@
 
             <!-- Current role (promoted) — green accent treatment -->
             <div class="relative mt-4 ps-4">
-              <span aria-hidden="true" class="absolute inset-y-0 inset-inline-start-0 w-[3px] rounded bg-emerald-500"></span>
+              <span aria-hidden="true" class="absolute inset-y-0 start-0 w-[3px] rounded bg-emerald-500"></span>
               <div class="flex items-center gap-2.5 flex-wrap">
                 <span class="font-mono text-[11px] tracking-wide px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-900 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900/60 inline-flex items-center gap-1">
                   <span data-i18n="exp.tatweer.acting.date">NOV 2025</span>
@@ -533,7 +533,7 @@
               </div>
               <div class="flex-1 min-w-0">
                 <div class="flex flex-wrap items-baseline justify-between gap-2">
-                  <h3 class="font-semibold text-base md:text-lg" data-i18n="exp.nelc.role">Senior BI Specialist — Team Lead</h3>
+                  <h3 class="font-semibold text-base md:text-lg" data-i18n="exp.nelc.role">Senior Business Intelligence Specialist — Team Lead</h3>
                   <span class="font-mono text-xs text-muted-foreground" data-i18n="exp.nelc.date">Nov 2021 – Jun 2024</span>
                 </div>
                 <p class="text-sm text-muted-foreground mt-1" data-i18n="exp.nelc.company">National eLearning Center · Riyadh</p>
@@ -723,8 +723,7 @@
         </p>
         <div class="mt-6 flex flex-wrap justify-center gap-3">
           <a id="email-btn"
-             href="https://outlook.office.com/mail/deeplink/compose?to=khaledalnemer@gmail.com&subject=Hello%20Khaled"
-             target="_blank" rel="noopener"
+             href="mailto:khaledalnemer@gmail.com?subject=Hello%20Khaled"
              class="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:opacity-90 transition">
             <i data-lucide="mail" class="h-4 w-4"></i>
             <span data-i18n="contact.email">Email me</span>
@@ -796,7 +795,7 @@
       <div class="flex items-center gap-3">
         <a href="https://khaledalnemer.sa" class="hover:text-foreground">khaledalnemer.sa</a>
         <span aria-hidden="true">·</span>
-        <a href="https://outlook.office.com/mail/deeplink/compose?to=khaledalnemer@gmail.com&subject=Hello%20Khaled" target="_blank" rel="noopener" class="hover:text-foreground">khaledalnemer@gmail.com</a>
+        <a href="mailto:khaledalnemer@gmail.com?subject=Hello%20Khaled" class="hover:text-foreground">khaledalnemer@gmail.com</a>
       </div>
     </div>
   </footer>
@@ -846,7 +845,7 @@
         'exp.tatweer.b3': 'Implemented governed data ingestion using Master Data Services (MDS).',
         'exp.tatweer.b4': 'Delivered executive dashboards supporting strategic and operational decisions.',
 
-        'exp.nelc.role': 'Senior BI Specialist — Team Lead',
+        'exp.nelc.role': 'Senior Business Intelligence Specialist — Team Lead',
         'exp.nelc.company': 'National eLearning Center · Riyadh',
         'exp.nelc.date': 'Nov 2021 – Jun 2024',
         'exp.nelc.summary': 'Established the Data Office and led the development of institutional analytics capabilities.',

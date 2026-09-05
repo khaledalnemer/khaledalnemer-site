@@ -206,6 +206,19 @@
       .grid-2 { grid-template-columns: 1fr; }
     }
 
+    /* Screen only: the A4 sheet is fixed at 210mm (~794px), which overflows
+       every phone viewport. Let it shrink to the screen. Print is unaffected —
+       the @media print block below restores the sheet geometry. */
+    @media screen and (max-width: 840px) {
+      .page {
+        width: auto;
+        max-width: 100%;
+        min-height: 0;
+        margin: 12px;
+        padding: 22px 18px 26px;
+      }
+    }
+
     /* ============================================================
        SCREEN-ONLY TOOLBAR (hidden in print)
        ============================================================ */
@@ -341,7 +354,7 @@
     <section>
       <h2>Summary</h2>
       <p>
-        Senior Business Intelligence leader with 8+ years building enterprise data warehouses,
+        Senior Business Intelligence leader with 9+ years building enterprise data warehouses,
         governance frameworks, and executive dashboards across the Saudi public and financial sectors.
         Currently leading national-scale analytics within the Ministry of Education ecosystem,
         with a track record of standing up Data Offices, defining KPI frameworks aligned with
@@ -355,8 +368,26 @@
 
       <div class="item">
         <div class="item-head">
+          <h3>Data Team Senior Manager (Acting)</h3>
+          <span class="item-meta">Nov 2025 – Present</span>
+        </div>
+        <div class="item-sub">Tatweer Educational Technologies · Riyadh, Saudi Arabia</div>
+        <p class="item-summary">
+          Expanded leadership across the Data function — aligning Business Intelligence and
+          Data Engineering under a shared delivery model (~18 team members).
+        </p>
+        <ul>
+          <li>Lead the full Data function, aligning Business Intelligence and Data Engineering teams under a shared delivery model.</li>
+          <li>Strengthen collaboration between technical teams and business stakeholders to drive sustainable data value.</li>
+          <li>Improve coordination between analytics and engineering capabilities, contributing to data-product maturity through policies and operational procedures.</li>
+          <li>Support structured governance and scalable delivery practices while developing leadership and administrative management capabilities.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
           <h3>Senior Business Intelligence — Team Lead</h3>
-          <span class="item-meta">Jun 2024 – Present</span>
+          <span class="item-meta">Jun 2024 – Nov 2025</span>
         </div>
         <div class="item-sub">Tatweer Educational Technologies · Riyadh, Saudi Arabia</div>
         <p class="item-summary">
