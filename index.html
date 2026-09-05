@@ -7,16 +7,42 @@
   <meta name="description" content="Khaled Alnemer — National Data & Analytics Leader. Building governed data ecosystems, KPI frameworks, and executive decision intelligence." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-size='70' font-family='system-ui'>K</text></svg>" />
 
+  <!-- Canonical: / and /index.html both resolve; point crawlers at the short form -->
+  <link rel="canonical" href="https://khaledalnemer.sa/" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="author" content="Khaled Alnemer" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#09090b" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:site_name" content="Khaled Alnemer" />
+  <meta property="og:url" content="https://khaledalnemer.sa/" />
+  <meta property="og:title" content="Khaled Alnemer — National Data &amp; Analytics Leader" />
+  <meta property="og:description" content="Building governed data ecosystems, KPI frameworks, and executive decision intelligence across the Saudi public and financial sectors." />
+  <meta property="og:image" content="https://khaledalnemer.sa/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Khaled Alnemer — National Data &amp; Analytics Leader" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="ar_SA" />
+  <meta property="profile:first_name" content="Khaled" />
+  <meta property="profile:last_name" content="Alnemer" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Khaled Alnemer — National Data &amp; Analytics Leader" />
+  <meta name="twitter:description" content="Building governed data ecosystems, KPI frameworks, and executive decision intelligence across the Saudi public and financial sectors." />
+  <meta name="twitter:image" content="https://khaledalnemer.sa/og-image.png" />
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- Tailwind via CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Lucide icons — pinned: @latest floats across major versions and can break createIcons() silently -->
-  <script src="https://unpkg.com/lucide@1.41.0/dist/umd/lucide.min.js"></script>
+  <!-- Lucide icons — pinned; deferred so 429 KB of JS does not block first paint.
+       Icons are drawn from the DOMContentLoaded fallback at the end of <body>. -->
+  <script defer src="https://unpkg.com/lucide@1.41.0/dist/umd/lucide.min.js"></script>
 
   <script>
     // Apply theme before paint to avoid flash
@@ -28,53 +54,6 @@
         }
       } catch (e) {}
     })();
-
-    // Tailwind shadcn-aligned theme tokens
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        container: { center: true, padding: '1rem' },
-        extend: {
-          colors: {
-            border: 'hsl(var(--border))',
-            input: 'hsl(var(--input))',
-            ring: 'hsl(var(--ring))',
-            background: 'hsl(var(--background))',
-            foreground: 'hsl(var(--foreground))',
-            primary: {
-              DEFAULT: 'hsl(var(--primary))',
-              foreground: 'hsl(var(--primary-foreground))',
-            },
-            secondary: {
-              DEFAULT: 'hsl(var(--secondary))',
-              foreground: 'hsl(var(--secondary-foreground))',
-            },
-            muted: {
-              DEFAULT: 'hsl(var(--muted))',
-              foreground: 'hsl(var(--muted-foreground))',
-            },
-            accent: {
-              DEFAULT: 'hsl(var(--accent))',
-              foreground: 'hsl(var(--accent-foreground))',
-            },
-            card: {
-              DEFAULT: 'hsl(var(--card))',
-              foreground: 'hsl(var(--card-foreground))',
-            },
-          },
-          borderRadius: {
-            lg: 'var(--radius)',
-            md: 'calc(var(--radius) - 2px)',
-            sm: 'calc(var(--radius) - 4px)',
-          },
-          fontFamily: {
-            sans: ['Inter', 'IBM Plex Sans Arabic', 'system-ui', 'sans-serif'],
-            arabic: ['"IBM Plex Sans Arabic"', 'Inter', 'system-ui', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-          },
-        },
-      },
-    };
   </script>
 
   <style>
@@ -360,6 +339,12 @@
       .shadow, .shadow-sm, .hover\:shadow { box-shadow: none !important; }
     }
   </style>
+
+  <!-- Built Tailwind output. Loaded AFTER the <style> above on purpose: the Play
+       CDN used to inject its stylesheet at the end of <head>, so utilities won
+       ties against the rules above. Keeping that order preserves the rendering.
+       Regenerate with `npm run build` after changing any class in this file. -->
+  <link rel="stylesheet" href="./styles.css?v=1" />
 </head>
 <body class="min-h-screen antialiased">
 
@@ -748,7 +733,7 @@
   <div id="call-modal" role="dialog" aria-modal="true" aria-labelledby="call-modal-title" aria-hidden="true"
        class="fixed inset-0 z-50 items-center justify-center p-4">
     <div class="absolute inset-0 bg-foreground/40 backdrop-blur-sm" data-modal-close></div>
-    <div class="relative w-full max-w-sm rounded-xl border border-border bg-card p-6 shadow-2xl modal-panel">
+    <div tabindex="-1" class="relative w-full max-w-sm rounded-xl border border-border bg-card p-6 shadow-2xl modal-panel">
       <button data-modal-close type="button" aria-label="Close"
               class="absolute top-3 end-3 inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground hover:bg-accent hover:text-foreground transition">
         <i data-lucide="x" class="h-4 w-4"></i>
@@ -1046,9 +1031,29 @@
       const dict = i18n[lang] || i18n.en;
       document.documentElement.lang = lang;
       document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-      document.title = lang === 'ar'
+      const title = lang === 'ar'
         ? 'خالد النمر — قائد البيانات والتحليلات الوطنية'
         : 'Khaled Alnemer — National Data & Analytics Leader';
+      const desc = lang === 'ar'
+        ? 'خالد النمر — قائد البيانات والتحليلات الوطنية. بناء منظومات بيانات محوكمة، وأطر مؤشرات أداء، وتمكين القرار التنفيذي.'
+        : 'Khaled Alnemer — National Data & Analytics Leader. Building governed data ecosystems, KPI frameworks, and executive decision intelligence.';
+
+      document.title = title;
+      // Keep the page description in step with the visible language. Crawlers read
+      // the served HTML, so this helps in-page/share behaviour, not indexing —
+      // real per-language indexing needs separate URLs with hreflang.
+      const setMeta = (sel, val) => {
+        const el = document.querySelector(sel);
+        if (el) el.setAttribute('content', val);
+      };
+      setMeta('meta[name="description"]', desc);
+      setMeta('meta[property="og:title"]', title);
+      setMeta('meta[property="og:description"]', desc);
+      setMeta('meta[name="twitter:title"]', title);
+      setMeta('meta[name="twitter:description"]', desc);
+      setMeta('meta[property="og:locale"]', lang === 'ar' ? 'ar_SA' : 'en_US');
+      setMeta('meta[property="og:locale:alternate"]', lang === 'ar' ? 'en_US' : 'ar_SA');
+
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (dict[key] !== undefined) el.textContent = dict[key];
@@ -1076,15 +1081,31 @@
     const copyBtn   = document.getElementById('copy-phone-btn');
     const PHONE     = '+966548433224';
 
+    const modalPanel = callModal.querySelector('.modal-panel');
+    let lastFocused = null;
+
+    // Tabbable controls inside the panel, in DOM order.
+    function modalFocusables() {
+      return Array.prototype.filter.call(
+        modalPanel.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'),
+        function (el) { return el.offsetWidth > 0 || el.offsetHeight > 0; }
+      );
+    }
+
     function openCallModal() {
+      lastFocused = document.activeElement;
       callModal.classList.add('open');
       callModal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+      const first = modalFocusables()[0];
+      (first || modalPanel).focus();
     }
     function closeCallModal() {
       callModal.classList.remove('open');
       callModal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+      if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+      lastFocused = null;
     }
 
     callBtn.addEventListener('click', openCallModal);
@@ -1094,9 +1115,24 @@
       el.addEventListener('click', closeCallModal);
     });
 
-    // close on Escape
+    // Escape closes; Tab is trapped inside the dialog (WAI-ARIA dialog pattern)
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && callModal.classList.contains('open')) closeCallModal();
+      if (!callModal.classList.contains('open')) return;
+      if (e.key === 'Escape') { closeCallModal(); return; }
+      if (e.key !== 'Tab') return;
+
+      const f = modalFocusables();
+      if (!f.length) { e.preventDefault(); return; }
+      const first = f[0], last = f[f.length - 1];
+
+      if (!modalPanel.contains(document.activeElement)) {
+        e.preventDefault();
+        (e.shiftKey ? last : first).focus();
+      } else if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
     });
 
     // copy number
@@ -1160,8 +1196,11 @@
     // year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // icons
+    // icons — the lucide script is deferred, so it may not have run yet
     if (window.lucide) lucide.createIcons();
+    else document.addEventListener('DOMContentLoaded', function () {
+      if (window.lucide) lucide.createIcons();
+    });
   </script>
 
 </body>

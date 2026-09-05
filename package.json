@@ -1,0 +1,13 @@
+{
+  "name": "khaledalnemer-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal site for Khaled Alnemer — static HTML with a Tailwind build step.",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./styles.css --minify",
+    "watch": "tailwindcss -i ./src/input.css -o ./styles.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}
